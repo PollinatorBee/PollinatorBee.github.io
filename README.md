@@ -1,5 +1,90 @@
+# Web & Game Developer
+
+Desarrollador junior con formación en desarrollo web y especialización en videojuegos y realidad virtual. Apasionado por la tecnología, la creatividad y el aprendizaje continuo. Experiencia en creación de juegos en VR usando Unity y C#, y desarrollo de páginas web con JavaScript, HTML y CSS. Nivel de inglés C1.
+
+---
+
+## 🎓 Education
+
+**Curso de Especialización en Desarrollo de Videojuegos y Realidad Virtual**  
+_2024-2025 | [Nombre del centro]_  
+- Desarrollo de videojuegos con Unity y C#  
+- Creación de assets 3D con Blender  
+- Edición gráfica con Photoshop  
+- Proyectos de VR con integración de APIs (GPT-4)  
+
+**Técnico Superior en Desarrollo de Aplicaciones Web (DAW)**  
+_2022-2024 | [Nombre del centro]_  
+- HTML, CSS, JavaScript, PHP  
+- Bases de datos: MySQL, SQL Server  
+- Proyecto final: página web dinámica con JavaScript puro  
+
+**Técnico en Sistemas Microinformáticos y Redes (SMR)**  
+_2020-2022 | [Nombre del centro]_  
+
+---
+
+## 💻 Skills
+
+**Lenguajes:**  
+JavaScript, HTML, CSS, C#
+
+**Herramientas y tecnologías:**  
+Unity, Blender, Photoshop, Git
+
+**Otros:**  
+Inglés C1 (Cambridge / equivalente)
+
+---
+
+## 🚀 Projects
+
+### 🎮 [Nombre del Juego VR 1]
+**Tecnologías:** Unity, C#, Blender, GPT-4 API  
+Juego en realidad virtual con mecánicas interactivas y diálogos generados mediante inteligencia artificial.  
+
+🔗 [Enlace al vídeo o demo]  
+📂 [Repositorio GitHub](https://github.com/tu-usuario/nombre-del-repo)
+
+---
+
+### 🎮 [Nombre del Juego VR 2]
+**Tecnologías:** Unity, C#, Blender  
+Segundo proyecto en VR. Enfocado en exploración y mecánicas de usuario en entorno 3D inmersivo.  
+
+🔗 [Enlace al vídeo o demo]  
+📂 [Repositorio GitHub](https://github.com/tu-usuario/nombre-del-repo)
+
+---
+
+### 🌐 Proyecto Web Final DAW
+**Tecnologías:** JavaScript puro, HTML, CSS  
+Sitio web dinámico creado como proyecto final del ciclo DAW. Lógica JS, diseño responsive y estructura modular.  
+
+🔗 [Demo online]  
+📂 [Repositorio GitHub](https://github.com/tu-usuario/nombre-del-repo)
+
+---
+
+## 📫 Contact
+
+- Email: tuemail@example.com  
+- LinkedIn: [linkedin.com/in/tuusuario](https://linkedin.com/in/tuusuario)  
+- GitHub: [github.com/tu-usuario](https://github.com/tu-usuario)
+
+
+
+
+
+
+
+
+
+
+
+
 # 💫 About Me:
-👨‍💻 Frontend Web Developer<br>⚡ Tech Content Creator<br>💼 Open To Job Opportunities<br>🌎 rammaheshwari.com <br>
+👨‍💻 FullStack Web Developer<br>⚡ Game Developer<br>💼 Open To Job Opportunities<br>🌎 rammaheshwari.com <br>
 
 
 ## 🌐 Socials:
