@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.pixel-font {
+    font-family: 'Press Start 2P', monospace;
+  }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  /*font-family: 'Press Start 2P', monospace; */
+  /*background-color: #0c2b32;  color base oscuro */
+  /*color: #f5f5dc;  color crema del texto */
+  background-color: #0e1e25;
+  color: #f0f0f0;
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Press Start 2P', monospace;  
+  color: #f8f8e7;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+  color: #ffa33c;
+}
+
+p, li {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #ffa33c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.banner {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(255, 163, 60, 0.3);
+}
+
+nav a {
+  font-weight: bold;
+  color: #ffa33c;
+  font-size: 0.8rem;
+  margin: 0 0.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+  font-size: 0.7rem;
+  color: #cccccc;
+}
+
+.project {
+  background: #122c34;
+  border-left: 4px solid #ffa33c;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.project h3 {
+  margin-top: 0;
+}
