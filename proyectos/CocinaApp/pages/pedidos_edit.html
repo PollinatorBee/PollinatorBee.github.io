@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>CocinApp</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+  <link href="../css/style.css" rel="stylesheet">
+  <script type="module" src="../js/header.js"></script>
+</head>
+<body>
+
+<!-- Contenido de la página -->
+<div class="container-fluid mt-4">
+  <div class="card shadow-lg">
+    <div class="card-header mx-2 d-flex justify-content-between row align-items-center">
+      <h2 id="edPedidos">Editar</h2>
+      <h6><b id="edPedidosEx"></b></h6>
+      <!-- <input type="search" id="query" class="text-center" placeholder="busqueda.."> -->
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table" id="pedidosTable">
+          <thead>
+            <tr class="table-secondary text-center">
+              <th id="tPedido"></th>
+              <th id="tUsusario"></th>
+              <th id="tFechaR"></th>
+              <th id="tHora"></th>
+              <th id="tpTotal"></th>
+              <th id="tEstado"></th>
+              <th id="tAcciones"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <td><input type="text" name="identificador_pedido" id="identificador_pedido" value="" class="text-center" readonly></td>
+            <td><input type="text" name="pedido_usuario" id="pedido_usuario" value="" class="text-center" readonly></td>
+            <!-- <td><input type="text" name="pedido_detalles" id="pedido_detalles" value="" class="text-center" readonly></td> -->
+            <!-- <td><input type="text" name="pedido_comentarios" id="pedido_comentarios" value="" class="text-center" readonly></td> -->
+            <td><input type="date" name="pedido_fecha" id="pedido_fecha" value="" class="text-center"></td>
+            <td><select id="pedido_hora" name="pedido_hora" class="text-center" size="6" multiple>
+              <option value="(08:15 - 09:10)">08:15 - 09:10</option>
+              <option value="(09:10 - 10:05)">09:10 - 10:05</option>
+              <option value="(10:25 - 11:20)">10:25 - 11:20</option>
+              <option value="(11:20 - 12:15)">11:20 - 12:15</option>
+              <option value="(12:35 - 13:30)">12:35 - 13:30</option>
+              <option value="(13:30 - 14:20)">13:30 - 14:20</option>
+            </select class="text-center"></td>
+            <td><input type="number" name="pedido_precio_total" id="pedido_precio_total" value="" class="text-center" readonly></td>
+            <td><input type="text" name="pedido_estado" id="pedido_estado" value="" class="text-center" readonly></td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <a id="editButton" class="btn btn-sm btn-outline-primary"><i class="bi bi-floppy"></i></a>
+                <a href="pedidos.html" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square"></i></a>
+              </div>
+            </td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/footer.js"></script>
+<script src="../js/script.js"></script>
+
+<!-- scripts funciones JS -->
+<script type="module" src="../js/firebase-config.js"></script>
+<script type="module" src="../js/pedidos_edit.js"></script>
+</body>
+</html>

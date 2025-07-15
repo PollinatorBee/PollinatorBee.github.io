@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  >
+    <title>CocinApp</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+  >
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd"
+      crossorigin="anonymous"
+  >
+    <link href="../css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card shadow-lg">
+              <div class="card-header text-center">
+                <img src="../images/iconos/cocinaApp.png" alt="" width="60">
+                <p class="texto-titulo">CocinApp</p>
+              </div>
+              <div class="card-body">
+
+                <h4 id="cTit"></h4>
+                <hr>
+                <h5 id="cTitEnt1"></h5>
+
+                <div class="form-group">
+                  <!-- Botón de llamada con icono -->
+                  <a href="tel:+34999999999" class="btn btn-outline-secondary mb-2">
+                    <i class="bi bi-telephone"></i>
+                  </a>
+                  <input type="tel" class="form-control" id="tel" value="999 99 99 99" readonly>
+                </div>
+                <div class="form-group">
+                  <!-- Botón de email con icono -->
+                  <a href="mailto:cenozVeronicaDev@gmail.com" class="btn btn-outline-secondary mb-2">
+                    <i class="bi bi-envelope"></i>
+                  </a>
+                  <input type="email" class="form-control" id="email" value="cenozVeronicaDev@gmail.com" readonly>
+                </div>
+
+                <hr>
+                <div class="text-center">
+                  <button class="btn btn-outline-secondary" id="dVolver"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <script src="../js/script.js"></script>
+  </body>
+</html>

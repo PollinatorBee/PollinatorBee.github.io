@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: datos.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: datos.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//DATOS.js
+//Archivo para mostrar los datos de usuario.
+import { selectDataUsuario } from "./functions-pedidos.js";
+
+//carga los datos de la base de datos al iniciar la pagina
+document.addEventListener("DOMContentLoaded", async function () {
+
+    //recogemos los valores pasados por la URL
+    const urlParams = new URLSearchParams(window.location.search);
+
+    try {
+        console.log("trayendo los datos para: ", urlParams.get("usuario"));
+        const usuarioPorUrl = urlParams.get("usuario");
+
+        //obtenemos los datos del usuario
+        const usuarios = await obtenerInformacionUsuario(usuarioPorUrl);
+        console.log(usuarios);
+
+        //pasamos los valores de la consulta a los elementos del html
+        document.getElementById("nombre").value = usuarios.nombre;
+        document.getElementById("apellidos").value = usuarios.apellidos;
+        document.getElementById("departamento").value = usuarios.departamento;
+        document.getElementById("tel").value = usuarios.telefono;
+        document.getElementById("email").value = usuarios.email;
+
+    } catch (error) {
+      alert(error.message);
+    }
+  }); 
+
+/**
+ * Obtiene la información del usuario de la base de datos.
+ * @param {string} usuario El nombre de usuario del usuario cuya información se va a obtener.
+ * @returns {Promise&lt;Object>} Una promesa que se resuelve en los datos del usuario.
+ */
+async function obtenerInformacionUsuario(usuario) {
+  // Selecciona los datos del usuario de la base de datos
+  const data = await selectDataUsuario(usuario);
+
+  // Muestra los datos del usuario en la consola
+  console.log("Datos de usuario:", data);
+
+  // Devuelve los datos del usuario
+  return data;
+}
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarDatosFirebase">actualizarDatosFirebase</a></li><li><a href="global.html#buscarEnAlergenos">buscarEnAlergenos</a></li><li><a href="global.html#buscarEnDetalles">buscarEnDetalles</a></li><li><a href="global.html#cambiarEstiloBoton">cambiarEstiloBoton</a></li><li><a href="global.html#comprobarMaximo">comprobarMaximo</a></li><li><a href="global.html#deleteDataPedidos">deleteDataPedidos</a></li><li><a href="global.html#deleteDataRaciones">deleteDataRaciones</a></li><li><a href="global.html#esCero">esCero</a></li><li><a href="global.html#esPositivo">esPositivo</a></li><li><a href="global.html#establecerCookie">establecerCookie</a></li><li><a href="global.html#formatFecha">formatFecha</a></li><li><a href="global.html#insertDataRaciones">insertDataRaciones</a></li><li><a href="global.html#introducirDatosFirebase">introducirDatosFirebase</a></li><li><a href="global.html#isValidInteger">isValidInteger</a></li><li><a href="global.html#mostrar">mostrar</a></li><li><a href="global.html#mostrarHistoricoFunction">mostrarHistoricoFunction</a></li><li><a href="global.html#mostrarRaciones">mostrarRaciones</a></li><li><a href="global.html#noCoincide">noCoincide</a></li><li><a href="global.html#obtenerCookie">obtenerCookie</a></li><li><a href="global.html#obtenerInformacionUsuario">obtenerInformacionUsuario</a></li><li><a href="global.html#obtenerMes">obtenerMes</a></li><li><a href="global.html#obtenerSemana">obtenerSemana</a></li><li><a href="global.html#ocultarHistoricoFunction">ocultarHistoricoFunction</a></li><li><a href="global.html#ordenarPedidos">ordenarPedidos</a></li><li><a href="global.html#parseAlergenos">parseAlergenos</a></li><li><a href="global.html#pintarDatos">pintarDatos</a></li><li><a href="global.html#ponerIdioma">ponerIdioma</a></li><li><a href="global.html#ponerIdiomaClass">ponerIdiomaClass</a></li><li><a href="global.html#rellenarTablas">rellenarTablas</a></li><li><a href="global.html#sanitizeInput">sanitizeInput</a></li><li><a href="global.html#searchDataPedidos">searchDataPedidos</a></li><li><a href="global.html#searchDataRaciones">searchDataRaciones</a></li><li><a href="global.html#seleccionarIdioma">seleccionarIdioma</a></li><li><a href="global.html#seleccionarIdiomaClass">seleccionarIdiomaClass</a></li><li><a href="global.html#selectAllDataPedidos">selectAllDataPedidos</a></li><li><a href="global.html#selectAllDataRaciones">selectAllDataRaciones</a></li><li><a href="global.html#selectAllDataResults">selectAllDataResults</a></li><li><a href="global.html#selectData">selectData</a></li><li><a href="global.html#selectDataUsuario">selectDataUsuario</a></li><li><a href="global.html#sendEmail">sendEmail</a></li><li><a href="global.html#sendEmailRecoger">sendEmailRecoger</a></li><li><a href="global.html#sendEmailRecogido">sendEmailRecogido</a></li><li><a href="global.html#setRowStyles">setRowStyles</a></li><li><a href="global.html#updateData">updateData</a></li><li><a href="global.html#updateDataPedidos">updateDataPedidos</a></li><li><a href="global.html#updateDataPedidosFecha">updateDataPedidosFecha</a></li><li><a href="global.html#validarInput">validarInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 23 2024 19:18:20 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

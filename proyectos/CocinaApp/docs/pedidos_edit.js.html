@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pedidos_edit.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pedidos_edit.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//FUNCIONES IMPORTADAS
+import { selectDataUsuario, updateDataPedidosFecha } from "./functions-pedidos.js";
+
+//Declaración de variables solo cambiar fecha.
+const identificador_pedido = document.getElementById("identificador_pedido");
+const pedido_usuario = document.getElementById("pedido_usuario");
+let pedido_fecha = document.getElementById("pedido_fecha");
+let pedido_hora = document.getElementById("pedido_hora");
+const pedido_precio_total = document.getElementById("pedido_precio_total");
+const pedido_estado = document.getElementById("pedido_estado");
+
+const editButton = document.getElementById("editButton");
+
+let fecha_guardar;
+
+let key;
+let usuario;
+let correo;
+
+//EVENTOS
+document.addEventListener("DOMContentLoaded", async function () {
+   
+    //recoger los valores pasados por url
+    const urlParams = new URLSearchParams(window.location.search);
+
+    key = urlParams.get("key");
+    usuario = urlParams.get("usuario");
+    correo = urlParams.get("correo");
+    
+    // Asignar la fecha formateada al input de tipo date 
+    let partesFechaR = urlParams.get("fecha").split('(')[0].trim(); //parto fecha de la hora y me quedo solo con ella
+    pedido_fecha.value = formatFecha(partesFechaR); //la formateo
+    fecha_guardar = pedido_fecha.value;
+
+    // Asignar las opciones de hora separandolo cada una
+    const regex = /\(([^)]+)\)/g; // Expresion regex que selecciona todos los caracteres dentro de cada parentesis
+    let matches;
+    const opcionesHoraOriginales = [];
+
+    // Buscamos todas las coincidencias con nuestra expresion regex y guardamos cada una dentro de un array
+    while ((matches = regex.exec(urlParams.get("fecha"))) !== null) {
+        opcionesHoraOriginales.push(`(${matches[1]})`); // el indice [0] tiene todos los caracteres incluidos los parentesis y el [1] todos sin el parentesis
+    }
+
+   // Iteramos sobre las opciones del select y si coiniciden con nuestros parametros los dejamos como seleccionados
+    for (let option of pedido_hora.options) {
+        if (opcionesHoraOriginales.includes(option.value)) {
+            option.selected = true;
+        }
+    }
+
+    const precio_total = urlParams.get("precio");
+    const estado = urlParams.get("estado");
+
+    identificador_pedido.value = key;
+    let obtener_usuario = await selectDataUsuario(usuario);
+    pedido_usuario.value = obtener_usuario.nombre+' '+obtener_usuario.apellidos;
+    pedido_precio_total.value = precio_total;
+    pedido_estado.value = estado;
+
+});
+
+//evento seleccionar fin de semana no permitido
+pedido_fecha.addEventListener('input', async function(){
+    let fechaSeleccionada = new Date(pedido_fecha.value);
+    let diaSemana = fechaSeleccionada.getDay();
+    pedido_fecha.blur();
+    if(diaSemana == 0 || diaSemana == 6){
+        alert('No puedes seleccionar un fin de semana. Se restablecerá la fecha.');
+        // Restablecer la fecha a la actual
+        pedido_fecha.value = fecha_guardar;
+       
+    }
+
+});
+
+//evento al guardar los datos con el botón edit Button.
+editButton.addEventListener("click", async (event)=>{
+    //Creamos un array con las opciones de hora seleccionadas
+    const selectedValues = Array.from(pedido_hora.selectedOptions).map(option => option.value);
+
+    await updateDataPedidosFecha(identificador_pedido.value, formatFecha(pedido_fecha.value) + ' ' + selectedValues.join(' '));
+    sendEmail(key, formatFecha(pedido_fecha.value), selectedValues.join(' '));
+
+});
+
+/**
+ * Formatea una fecha en el formato "DD-MM-YYYY".
+ * @param {string} fecha La fecha a formatear en formato "YYYY-MM-DD".
+ * @returns {string} La fecha formateada en formato "DD-MM-YYYY".
+ */
+function formatFecha(fecha) {
+    // Dividir la fecha en partes usando el carácter "-" como separador
+    const partesFecha = fecha.split("-");
+    
+    // Reorganizar las partes de la fecha en el formato "DD-MM-YYYY"
+    return partesFecha[2] + "-" + partesFecha[1] + "-" + partesFecha[0];
+}
+
+
+/**
+ * Envía un correo electrónico con información sobre un pedido.
+ * @param {string} id El código del pedido.
+ * @param {string} fecha La fecha actualizada del pedido.
+ * @param {string} horas Las horas de recogida actualizadas del pedido.
+ */
+function sendEmail(id, fecha, horas) {
+    // Imprime un mensaje de registro
+    console.log("Enviando correo electrónico...");
+    
+    // Define el asunto y el cuerpo del correo electrónico
+    const subject = 'Su pedido ha cambiado de fecha u hora';
+    const body = `Su pedido con el código ${id} ha cambiado a la siguiente fecha y horas de recogida: Fecha: ${fecha} Horas: ${horas} `;
+    
+    // Crea el URI del correo electrónico con la información proporcionada
+    const mailtoURI = `mailto:${correo}?subject=${encodeURIComponent(subject)}&amp;body=${encodeURIComponent(body)}`;
+    
+    // Abre el cliente de correo electrónico predeterminado con el correo electrónico preconfigurado
+    window.open(mailtoURI, '_self');
+}
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarDatosFirebase">actualizarDatosFirebase</a></li><li><a href="global.html#buscarEnAlergenos">buscarEnAlergenos</a></li><li><a href="global.html#buscarEnDetalles">buscarEnDetalles</a></li><li><a href="global.html#cambiarEstiloBoton">cambiarEstiloBoton</a></li><li><a href="global.html#comprobarMaximo">comprobarMaximo</a></li><li><a href="global.html#deleteDataPedidos">deleteDataPedidos</a></li><li><a href="global.html#deleteDataRaciones">deleteDataRaciones</a></li><li><a href="global.html#esCero">esCero</a></li><li><a href="global.html#esPositivo">esPositivo</a></li><li><a href="global.html#establecerCookie">establecerCookie</a></li><li><a href="global.html#formatFecha">formatFecha</a></li><li><a href="global.html#insertDataRaciones">insertDataRaciones</a></li><li><a href="global.html#introducirDatosFirebase">introducirDatosFirebase</a></li><li><a href="global.html#isValidInteger">isValidInteger</a></li><li><a href="global.html#mostrar">mostrar</a></li><li><a href="global.html#mostrarHistoricoFunction">mostrarHistoricoFunction</a></li><li><a href="global.html#mostrarRaciones">mostrarRaciones</a></li><li><a href="global.html#noCoincide">noCoincide</a></li><li><a href="global.html#obtenerCookie">obtenerCookie</a></li><li><a href="global.html#obtenerInformacionUsuario">obtenerInformacionUsuario</a></li><li><a href="global.html#obtenerMes">obtenerMes</a></li><li><a href="global.html#obtenerSemana">obtenerSemana</a></li><li><a href="global.html#ocultarHistoricoFunction">ocultarHistoricoFunction</a></li><li><a href="global.html#ordenarPedidos">ordenarPedidos</a></li><li><a href="global.html#parseAlergenos">parseAlergenos</a></li><li><a href="global.html#pintarDatos">pintarDatos</a></li><li><a href="global.html#ponerIdioma">ponerIdioma</a></li><li><a href="global.html#ponerIdiomaClass">ponerIdiomaClass</a></li><li><a href="global.html#rellenarTablas">rellenarTablas</a></li><li><a href="global.html#sanitizeInput">sanitizeInput</a></li><li><a href="global.html#searchDataPedidos">searchDataPedidos</a></li><li><a href="global.html#searchDataRaciones">searchDataRaciones</a></li><li><a href="global.html#seleccionarIdioma">seleccionarIdioma</a></li><li><a href="global.html#seleccionarIdiomaClass">seleccionarIdiomaClass</a></li><li><a href="global.html#selectAllDataPedidos">selectAllDataPedidos</a></li><li><a href="global.html#selectAllDataRaciones">selectAllDataRaciones</a></li><li><a href="global.html#selectAllDataResults">selectAllDataResults</a></li><li><a href="global.html#selectData">selectData</a></li><li><a href="global.html#selectDataUsuario">selectDataUsuario</a></li><li><a href="global.html#sendEmail">sendEmail</a></li><li><a href="global.html#sendEmailRecoger">sendEmailRecoger</a></li><li><a href="global.html#sendEmailRecogido">sendEmailRecogido</a></li><li><a href="global.html#setRowStyles">setRowStyles</a></li><li><a href="global.html#updateData">updateData</a></li><li><a href="global.html#updateDataPedidos">updateDataPedidos</a></li><li><a href="global.html#updateDataPedidosFecha">updateDataPedidosFecha</a></li><li><a href="global.html#validarInput">validarInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 23 2024 19:18:20 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

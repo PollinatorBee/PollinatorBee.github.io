@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: resultados.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: resultados.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//FUNCIONES IMPORTADAS
+import { selectAllDataResults } from "./functions-pedidos.js";
+
+document.addEventListener("DOMContentLoaded", async function () {
+  try {
+    
+    // cargamos los datos
+    let dat = await selectAllDataResults();
+    // Obtenemos la fecha actual
+    const fechaActual = new Date();
+    let pedidosPorSemanaPrepararRecoger = {};
+    let pedidosPorSemanaRecogidos = {};
+    let pedidosPorMesPrepararRecoger = {};
+    let pedidosPorMesRecogidos = {};
+    let pedidosPorAnioPrepararRecoger = {};
+    let pedidosPorAnioRecogidos = {};
+
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+
+    for (const [index, rowData] of dat.entries()) {
+      //Si el pedido ya no puede editarse por el usuario, entonces se muestran
+      if (rowData.editable == false) {
+        //cargamos sólo la fecha de entrega, las horas las eliminamos.
+        const fechaEntrega = new Date(formatFecha(rowData.fecha_entrega.split('(')[0].trim()));
+        // Semanal, para la gráfica del mes actual
+        const semana = `Semana (${obtenerSemana(fechaEntrega)})`;
+        if (fechaEntrega.getMonth() === fechaActual.getMonth()) {
+          if (!pedidosPorSemanaPrepararRecoger[semana]) {
+            pedidosPorSemanaPrepararRecoger[semana] = [];
+          }
+          if (!pedidosPorSemanaRecogidos[semana]) {
+            pedidosPorSemanaRecogidos[semana] = [];
+          }
+          if (rowData.estado == "preparar" || rowData.estado == "recoger") {
+            pedidosPorSemanaPrepararRecoger[semana].push(rowData);
+          } else {
+            pedidosPorSemanaRecogidos[semana].push(rowData);
+          }
+        }
+        // Mensual, para la gráfica del año actual
+        const mes = obtenerMes(fechaEntrega);
+        if (fechaEntrega.getFullYear() === fechaActual.getFullYear()) {
+          if (!pedidosPorMesPrepararRecoger[mes]) {
+            pedidosPorMesPrepararRecoger[mes] = [];
+          }
+          if (!pedidosPorMesRecogidos[mes]) {
+            pedidosPorMesRecogidos[mes] = [];
+          }
+          if (rowData.estado == "preparar" || rowData.estado == "recoger") {
+            pedidosPorMesPrepararRecoger[mes].push(rowData);
+          } else {
+            pedidosPorMesRecogidos[mes].push(rowData);
+          }
+        }
+        // Anual, para la gráfica de todos los años
+        const anio = fechaEntrega.getFullYear();
+        if (!pedidosPorAnioPrepararRecoger[anio]) {
+          pedidosPorAnioPrepararRecoger[anio] = [];
+        }
+        if (!pedidosPorAnioRecogidos[anio]) {
+          pedidosPorAnioRecogidos[anio] = [];
+        }
+        if (rowData.estado == "preparar" || rowData.estado == "recoger") {
+          pedidosPorAnioPrepararRecoger[anio].push(rowData);
+        } else {
+          pedidosPorAnioRecogidos[anio].push(rowData);
+        }
+      }
+    }
+
+    // Obtener el nombre del mes actual
+    const nombreMes = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(fechaActual).replace(/^\w/, (c) => c.toUpperCase());
+
+    google.charts.load("current", { packages: ["corechart"], language: "es" });
+    google.charts.setOnLoadCallback(() => {
+      //para el mes actual
+      drawChart(pedidosPorSemanaPrepararRecoger, pedidosPorSemanaRecogidos, "Semana", `Resumen del mes ${nombreMes}`);
+      //para el año acual
+      drawChart(pedidosPorMesPrepararRecoger, pedidosPorMesRecogidos, "Mes", `Resumen de Pedidos por Meses (${fechaActual.getFullYear()})`);
+      //para todo el historico, todos los años
+      drawComboChart(pedidosPorAnioPrepararRecoger, pedidosPorAnioRecogidos, "Año", "Resumen de Pedidos por Año");
+    });
+
+    /**
+     * Función para crear gráficas con Google Charts.
+     * Esta función crea gráficas de barras horizontales para el mes y año actuales.
+     * @param {Object} dataPrepararRecoger Datos de los pedidos en estado "preparar" o "recoger".
+     * @param {Object} dataRecogidos Datos de los pedidos en estado "recogido".
+     * @param {string} label Etiqueta para la gráfica (puede ser "Mes" o "Semana").
+     * @param {string} title Título de la gráfica.
+     */
+    function drawChart(dataPrepararRecoger, dataRecogidos, label, title) {
+      let data_precio = [];
+      // Agrega la primera fila con las etiquetas de las columnas
+      data_precio.push([
+        label,
+        "Preparar y recoger",
+        { role: "annotation" },
+        { role: "annotation" },
+        "Recogidos",
+        { role: "annotation" },
+        { role: "annotation" }
+      ]);
+
+      // Obtiene el elemento del gráfico por su ID
+      let chart_visual = document.getElementById(`chart-${label.toLowerCase()}`);
+
+      // Determina el orden de las claves según el tipo de gráfico
+      let sortedKeys;
+      if (label === "Mes") { // Si es el gráfico por mes
+        // Usa los nombres de los meses en el orden de los números de mes
+        sortedKeys = Object.keys(dataPrepararRecoger).sort((a, b) => a - b)
+      } else if (label === "Semana") { // Si es el gráfico por semana
+        // Ordena las claves de forma predeterminada
+        sortedKeys = Object.keys(dataPrepararRecoger).sort();
+      } else {
+        // Ordena las claves de forma predeterminada
+        sortedKeys = Object.keys(dataPrepararRecoger).sort();
+      }
+
+      // Crea las filas de datos en base a las claves ordenadas
+      sortedKeys.forEach(key => {
+        const dataGroupPrepararRecoger = dataPrepararRecoger[key] || [];
+        const dataGroupRecogidos = dataRecogidos[key] || [];
+        const numPrepararRecoger = dataGroupPrepararRecoger.length;
+        const numRecogidos = dataGroupRecogidos.length;
+        const totalPrepararRecoger = dataGroupPrepararRecoger.reduce((total, pedido) => total + parseFloat(pedido.precio_total || 0), 0);
+        const totalRecogidos = dataGroupRecogidos.reduce((total, pedido) => total + parseFloat(pedido.precio_total || 0), 0);
+
+        // Agrega una fila de datos al array
+        data_precio.push([
+          key,
+          numPrepararRecoger,
+          numPrepararRecoger, // Valor de anotación para Preparar y recoger
+          totalPrepararRecoger, // Valor de anotación para Preparar y recoger
+          numRecogidos,
+          numRecogidos.toString(), // Valor de anotación para Recogidos
+          totalRecogidos // Valor de anotación para Recogidos
+        ]);
+      });
+
+      // Convierte los datos en formato de tabla de Google Charts
+      var data = google.visualization.arrayToDataTable(data_precio);
+
+      // Crea una vista de datos para personalizar las columnas
+      var view = new google.visualization.DataView(data);
+      view.setColumns([
+        0, // Columna de etiquetas
+        1, // Columna de datos de Preparar y recoger
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 2);
+          },
+          type: "string",
+          role: "annotation",
+        },
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 3, ' €');
+          },
+          type: "string",
+          role: "annotation",
+        },
+        4, // Columna de datos de Recogidos
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 5);
+          },
+          type: "string",
+          role: "annotation",
+        },
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 6, ' €');
+          },
+          type: "string",
+          role: "annotation",
+        },
+      ]);
+
+      // Opciones para la gráfica
+      var options = {
+        title: title,
+        width: '100%', // Ancho al 100% del contenedor
+        height: 300,
+        hAxis: {
+          format: '0'
+        },
+        isStacked: true,
+        series: {
+          0: { color: '#3366cc' },
+          1: { color: '#dc3912' }
+        },
+        chartArea: {
+          left: '25%', // Margen izquierdo
+          top: '25%', // Margen superior
+          width: '50%', // Ancho del área del gráfico
+          height: '70%' // Altura del área del gráfico
+        },
+        breakpoints: [
+          { maxWidth: 600, options: { width: '100%', chartArea: { width: '90%' } } }, // Configuración para pantallas pequeñas
+          { maxWidth: 900, options: { width: '100%', chartArea: { width: '90%' } } } // Configuración para pantallas medianas
+        ],
+      };
+
+      // Crea la instancia del gráfico de barras horizontales
+      var chart = new google.visualization.BarChart(chart_visual);
+
+      // Dibuja la gráfica con los datos y opciones especificados
+      chart.draw(view, options);
+    }
+
+
+    /**
+     * Crea un gráfico combinado de columnas con líneas utilizando Google Chart.
+     * @param {Object} dataPrepararRecoger Datos de pedidos preparados y recogidos por año.
+     * @param {Object} dataRecogidos Datos de pedidos recogidos por año.
+     * @param {string} label Etiqueta del eje X del gráfico.
+     * @param {string} title Título del gráfico.
+     */
+    function drawComboChart(dataPrepararRecoger, dataRecogidos, label, title) {
+      // Array que almacenará los datos para el gráfico
+      let data_precio = [];
+      // Se agrega la primera fila del gráfico con los títulos de las columnas
+      data_precio.push(["Año", "Recogidos", { role: "annotation" }, { role: "annotation" }, "Media"]);
+      // Se obtiene el elemento donde se dibujará el gráfico
+      let chart_visual = document.getElementById(`chart-${label.toLowerCase()}`);
+
+      // Se itera sobre los datos por año
+      Object.keys(dataPrepararRecoger).forEach(anio => {
+        // Se obtienen los pedidos recogidos para el año actual
+        const pedidosRecogidos = dataRecogidos[anio] || [];
+        // Se calcula el número de pedidos recogidos
+        const numeroPedidosRecogidos = pedidosRecogidos.length;
+        // Se calcula el total de los pedidos recogidos en el año
+        const totalAnioRecogidos = pedidosRecogidos.reduce((total, pedido) => total + parseFloat(pedido.precio_total || 0), 0);
+        // Se calcula el promedio de los pedidos recogidos
+        const averagePedidos = numeroPedidosRecogidos > 0 ? totalAnioRecogidos / numeroPedidosRecogidos : 0;
+
+        // Se agregan los datos del año al array para el gráfico
+        data_precio.push([anio, numeroPedidosRecogidos, numeroPedidosRecogidos.toString(), totalAnioRecogidos, averagePedidos]);
+      });
+
+      // Se crea un DataTable de Google Chart con los datos
+      var data = google.visualization.arrayToDataTable(data_precio);
+
+      // Se crea una vista de datos para manipular las columnas
+      var view = new google.visualization.DataView(data);
+      // Se configuran las columnas del gráfico
+      view.setColumns([
+        0,
+        1,
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 2);
+          },
+          type: "string",
+          role: "annotation",
+        },
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 3, ' €');
+          },
+          type: "string",
+          role: "annotation",
+        },
+        4,
+        {
+          calc: function (dt, row) {
+            return mostrar(dt, row, 4, ' €/pedido');
+          },
+          type: "string",
+          role: "annotation",
+        },
+      ]);
+
+      // Se configuran las opciones del gráfico
+      var options = {
+        title: title,
+        width: '100%', // Ancho al 100% del contenedor
+        height: 300,
+        hAxis: {
+          format: '0'
+        },
+        isStacked: true,
+        seriesType: 'bars',
+        series: {
+          0: { color: '#dc3912' },
+          1: { type: 'line', color: '#ff9900' }
+        },
+        legend: { position: "bottom" },
+        chartArea: {
+          left: '10%', // Margen izquierdo
+          top: '10%', // Margen superior
+          width: '80%', // Ancho del área del gráfico
+          height: '70%' // Altura del área del gráfico
+        },
+        // Agregar para que sea responsive
+        // Agregar configuración de punto de ruptura
+        breakpoints: [
+          { maxWidth: 600, options: { width: '100%', chartArea: { width: '90%' } } }, // Configuración para pantallas pequeñas
+          { maxWidth: 900, options: { width: '100%', chartArea: { width: '90%' } } } // Configuración para pantallas medianas
+        ]
+      };
+
+      // Se crea un ComboChart de Google Chart
+      var chart = new google.visualization.ComboChart(
+        chart_visual
+      );
+      // Se dibuja el gráfico
+      chart.draw(view, options);
+    }
+
+    
+
+  } catch (error) {
+    alert(error.message);
+  }
+});
+
+/**
+ * Formatea una fecha en el formato "DD-MM-YYYY" a "YYYY-MM-DD".
+ * @param {string} fecha La fecha en formato "DD-MM-YYYY" a formatear.
+ * @returns {string} La fecha formateada en formato "YYYY-MM-DD".
+ */
+function formatFecha(fecha) {
+  // Divide la fecha en partes usando el guión como separador
+  const partesFecha = fecha.split("-");
+
+  // Reorganiza las partes de la fecha para formar el formato "YYYY-MM-DD"
+  return partesFecha[2] + "-" + partesFecha[1] + "-" + partesFecha[0];
+}
+
+
+/**
+ * Obtiene el rango de fechas correspondiente a la semana de la fecha especificada.
+ * @param {Date} fecha La fecha para la que se desea obtener el rango de la semana.
+ * @returns {string} El rango de fechas de la semana en formato 'DD - DD', donde DD representa el día del mes.
+ */
+function obtenerSemana(fecha) {
+  // Calcular la fecha del inicio de la semana (lunes)
+  const inicioSemana = new Date(fecha);
+  inicioSemana.setDate(fecha.getDate() - fecha.getDay() + (fecha.getDay() === 0 ? -6 : 1));
+
+  // Calcular la fecha del final de la semana (domingo)
+  const finSemana = new Date(inicioSemana);
+  finSemana.setDate(inicioSemana.getDate() + 6);
+
+  // Definir el formato de fecha para mostrar solo el día del mes (2 dígitos)
+  const formatoFecha_day = { day: '2-digit' };
+
+  // Obtener las representaciones de cadena de las fechas de inicio y fin de la semana en formato 'DD'
+  const inicioStr = inicioSemana.toLocaleDateString('es-ES', formatoFecha_day);
+  const finStr = finSemana.toLocaleDateString('es-ES', formatoFecha_day);
+
+  // Devolver el rango de fechas de la semana en formato 'DD - DD'
+  return `${inicioStr} - ${finStr}`;
+}
+
+
+/**
+ * Obtiene el mes de una fecha dada.
+ * @param {Date} fecha La fecha de la cual se va a obtener el mes.
+ * @returns {number} El número del mes (1-12) de la fecha dada.
+ */
+function obtenerMes(fecha) {
+  // Obtiene el número del mes (0-11) de la fecha y le suma 1 para obtener el número del mes (1-12)
+  return fecha.getMonth() + 1; 
+}
+
+
+/**
+ * Retorna el valor de una celda en una tabla de datos, opcionalmente formateado con un símbolo de precio.
+ * @param {DataTable} dt La tabla de datos de la que se obtiene el valor.
+ * @param {number} row El índice de la fila en la tabla de datos.
+ * @param {number} num_column El índice de la columna en la tabla de datos.
+ * @param {string} precio (Opcional) El símbolo de precio que se agrega al valor.
+ * @returns {string} El valor de la celda, opcionalmente formateado con el símbolo de precio.
+ */
+function mostrar(dt, row, num_column, precio) {
+  // Verifica si se proporciona un símbolo de precio
+  if (precio) {
+    // Si el valor de la celda no es cero, formatea el valor con dos decimales y agrega el símbolo de precio
+    return dt.getValue(row, num_column) !== 0 ? parseFloat(dt.getValue(row, num_column)).toFixed(2).toString() + precio.toString() : '';
+  } else {
+    // Si no se proporciona un símbolo de precio y el valor de la celda no es cero, devuelve el valor de la celda como una cadena
+    return dt.getValue(row, num_column) !== 0 ? dt.getValue(row, num_column).toString() : '';
+  }
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarDatosFirebase">actualizarDatosFirebase</a></li><li><a href="global.html#buscarEnAlergenos">buscarEnAlergenos</a></li><li><a href="global.html#buscarEnDetalles">buscarEnDetalles</a></li><li><a href="global.html#cambiarEstiloBoton">cambiarEstiloBoton</a></li><li><a href="global.html#comprobarMaximo">comprobarMaximo</a></li><li><a href="global.html#deleteDataPedidos">deleteDataPedidos</a></li><li><a href="global.html#deleteDataRaciones">deleteDataRaciones</a></li><li><a href="global.html#esCero">esCero</a></li><li><a href="global.html#esPositivo">esPositivo</a></li><li><a href="global.html#establecerCookie">establecerCookie</a></li><li><a href="global.html#formatFecha">formatFecha</a></li><li><a href="global.html#insertDataRaciones">insertDataRaciones</a></li><li><a href="global.html#introducirDatosFirebase">introducirDatosFirebase</a></li><li><a href="global.html#isValidInteger">isValidInteger</a></li><li><a href="global.html#mostrar">mostrar</a></li><li><a href="global.html#mostrarHistoricoFunction">mostrarHistoricoFunction</a></li><li><a href="global.html#mostrarRaciones">mostrarRaciones</a></li><li><a href="global.html#noCoincide">noCoincide</a></li><li><a href="global.html#obtenerCookie">obtenerCookie</a></li><li><a href="global.html#obtenerInformacionUsuario">obtenerInformacionUsuario</a></li><li><a href="global.html#obtenerMes">obtenerMes</a></li><li><a href="global.html#obtenerSemana">obtenerSemana</a></li><li><a href="global.html#ocultarHistoricoFunction">ocultarHistoricoFunction</a></li><li><a href="global.html#ordenarPedidos">ordenarPedidos</a></li><li><a href="global.html#parseAlergenos">parseAlergenos</a></li><li><a href="global.html#pintarDatos">pintarDatos</a></li><li><a href="global.html#ponerIdioma">ponerIdioma</a></li><li><a href="global.html#ponerIdiomaClass">ponerIdiomaClass</a></li><li><a href="global.html#rellenarTablas">rellenarTablas</a></li><li><a href="global.html#sanitizeInput">sanitizeInput</a></li><li><a href="global.html#searchDataPedidos">searchDataPedidos</a></li><li><a href="global.html#searchDataRaciones">searchDataRaciones</a></li><li><a href="global.html#seleccionarIdioma">seleccionarIdioma</a></li><li><a href="global.html#seleccionarIdiomaClass">seleccionarIdiomaClass</a></li><li><a href="global.html#selectAllDataPedidos">selectAllDataPedidos</a></li><li><a href="global.html#selectAllDataRaciones">selectAllDataRaciones</a></li><li><a href="global.html#selectAllDataResults">selectAllDataResults</a></li><li><a href="global.html#selectData">selectData</a></li><li><a href="global.html#selectDataUsuario">selectDataUsuario</a></li><li><a href="global.html#sendEmail">sendEmail</a></li><li><a href="global.html#sendEmailRecoger">sendEmailRecoger</a></li><li><a href="global.html#sendEmailRecogido">sendEmailRecogido</a></li><li><a href="global.html#setRowStyles">setRowStyles</a></li><li><a href="global.html#updateData">updateData</a></li><li><a href="global.html#updateDataPedidos">updateDataPedidos</a></li><li><a href="global.html#updateDataPedidosFecha">updateDataPedidosFecha</a></li><li><a href="global.html#validarInput">validarInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 23 2024 19:18:20 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

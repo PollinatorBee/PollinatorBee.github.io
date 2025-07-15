@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>CocinApp</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <script type="module" src="./js/header.js"></script>
+</head>
+<body>
+
+<!-- Contenido de la página -->
+<div class="container">
+  <div class="card-body mt-4 p-4 shadow-lg card-indx">
+    <div class="col">
+      <!-- foto de la cocina -->
+      <div class="col-md-12 py-1">
+        <div class="text-center mb-5">
+          <img src="./images/fondo/ChatGPTCocineros.png" alt="imagen de todos en la cocina">
+        </div>
+      </div>
+      <div class="row">
+    
+      
+      <!-- Card de Pedidos -->
+      <div class="col-md-6 py-1">
+        <div class="card shadow-lg bg-body-tertiary rounded p-4">
+          <h5 class="card-header" id="tiPedidos"></h5>
+          <div class="card-body">
+            <p class="card-text" id="hisPedidos"></p>
+            <a href="./pages/pedidos.html" id="irPedidos" class="btn btn-outline-secondary"></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card de Raciones -->
+      <div class="col-md-6 py-1">
+        <div class="card shadow-lg bg-body-tertiary rounded p-4">
+          <h5 class="card-header" id="tiRaciones"></h5>
+          <div class="card-body">
+            <p class="card-text" id="contRaciones"></p>
+            <a href="./pages/raciones.html" id="irRaciones" class="btn btn-outline-secondary"></a>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./js/footer.js"></script>
+<script src="./js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+    "source": {
+        "include": ["js"]
+    },
+    "opts": {
+        "destination": "docs",
+        "readme": "./README.md"
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    }
+}

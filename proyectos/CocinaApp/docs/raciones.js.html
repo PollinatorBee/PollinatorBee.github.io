@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: raciones.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: raciones.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//FUNCIONES IMPORTADAS
+import { storage } from './firebase-config.js'; //traemos "storage" exportado desde firebase-config.js (local)
+import { ref, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js'; //traemos estos metodos de un .js online
+import { selectAllDataRaciones, deleteDataRaciones, searchDataRaciones } from "./functions-raciones.js"; //traemos los metodos exportados en functions.js
+
+// Ejecutamos selectAllData para recivir los datos de la base de datos y actualizar el html con nuestras variables en main.js
+document.addEventListener("DOMContentLoaded", async function () { //tiene que ser async para poder usar await selectAllDataRaciones(); (pausa el codigo hasta recibir respuesta)
+  try {
+
+    //obtenemos lo que ponemos en el search
+    const query = document.getElementById('query');
+    //para que siempre arranque con el search seleccionado
+    if(query) query.focus();
+
+    let data = await selectAllDataRaciones(); //llamamos a la funcion de functions.js con el prefijo await, que pausara la ejecucion del codigo hasta obtener respuesta
+
+    await mostrarRaciones(data);
+
+    query.addEventListener('input', async function() {
+        
+      try {
+          
+          //hacer location reload porque sino al borrar rapidamente se quedan varios item repetidos ¿?
+          (query.value !=''|| query.value == null)? data = await searchDataRaciones(query.value) : location.reload();
+          // console.log(data);
+
+          //ponemos en la tabla
+          await mostrarRaciones(data);
+
+      } catch (error) {
+          console.error('Error al obtener datos:', error);
+      }
+    });
+  } catch (error) {
+    alert(error.message);
+  }
+
+});
+
+/**
+ * Muestra las raciones en una tabla HTML.
+ * @param {Array&lt;Object>} data Los datos de las raciones a mostrar.
+ * @returns {void}
+ */
+async function mostrarRaciones(data) {
+  const table = document.getElementById("racionesTable");
+  const tbody = table.getElementsByTagName("tbody")[0]; // Obtiene el primer elemento tbody de la tabla
+  tbody.innerHTML = ""; // Limpia el tbody cada vez que se refresca la página
+
+  // Itera sobre los datos y actualiza la tabla (debe ser asíncrono para esperar el await al código para getDownloadURL(photoRef))
+  data.forEach(async (rowData) => {
+    // Crea una nueva fila
+    const row = tbody.insertRow();
+
+    // Inicializa la URL de la foto como indefinida
+    let urlFoto;
+
+    // Obtiene la referencia de la foto en Firebase Storage con el mismo nombre que la ración
+    const photoRef = ref(storage, rowData.key);
+
+    try {
+      // Obtiene la URL de descarga de la foto
+      console.log("Buscando en Firebase la URL para la foto:", rowData.key);
+      urlFoto = await getDownloadURL(photoRef);
+      console.log("URL obtenida:", urlFoto);
+    } catch (error) {
+      console.log("La ración no tiene foto, se dejará el campo vacío");
+    }
+
+    // Crea una celda por cada columna
+    const columnaKey = row.insertCell(0);
+    columnaKey.style.fontWeight = "bold"; // La primera columna tendrá el texto en negrita
+    const columnaFoto = row.insertCell(1);
+    const columnaDescripcion = row.insertCell(2);
+    const columnaAlergenos = row.insertCell(3);
+    const columnaPrecio = row.insertCell(4);
+    const columnaStock = row.insertCell(5);
+    const columnaMaximo = row.insertCell(6);
+    const columnaAcciones = row.insertCell(7);
+
+    // Añade el contenido a cada celda
+    columnaKey.textContent = rowData.key;
+    console.log("Añadiendo el src de la foto como la URL obtenida:", urlFoto);
+    columnaFoto.innerHTML = `&lt;img src="${urlFoto}" alt="" width="150" readonly>`;
+    columnaDescripcion.innerHTML = rowData.descripcion;
+    columnaAlergenos.innerHTML = rowData.alergenos ? rowData.alergenos.join(', ') : 'ninguno'; // Si hay datos, junta los elementos del array con una coma y un espacio entre cada elemento
+    columnaPrecio.innerHTML = rowData.precio + " €" || ' ';
+    columnaStock.innerHTML = rowData.stock;
+    columnaMaximo.innerHTML = rowData.pedido_max;
+
+    // Botones para editar y eliminar
+    const editButton = document.createElement('a');
+    editButton.href = `../pages/raciones_edit.html?key=${rowData.key}&amp;foto=${urlFoto}&amp;descripcion=${rowData.descripcion}&amp;alergenos=${rowData.alergenos || 'ninguno'}&amp;precio=${rowData.precio}&amp;stock=${rowData.stock}&amp;maximo=${rowData.pedido_max}`;
+    editButton.className = 'btn btn-sm btn-outline-primary';
+    editButton.innerHTML = '&lt;i class="bi bi-pencil-square">&lt;/i>';
+
+    const deleteButton = document.createElement('a');
+    deleteButton.className = 'btn btn-sm btn-outline-danger';
+    deleteButton.innerHTML = '&lt;i class="bi bi-trash">&lt;/i>';
+
+    // Event listener para el botón de editar
+    editButton.addEventListener("click", () => handleEdit(rowData.key));
+
+    // Event listener para el botón de eliminar
+    deleteButton.addEventListener("click", () => {
+      // Muestra un mensaje de confirmación
+      let userResponse = confirm("¿Desea borrar esta ración?");
+
+      if (userResponse) { // Si el usuario confirma, se borran los datos de la ración
+        // Borra la ración de la tabla raciones
+        deleteDataRaciones(rowData.key);
+
+        // Borra la foto de storage
+        const storageRef = ref(storage, rowData.key);
+        deleteObject(storageRef)
+          .then(() => {
+            console.log('Foto', rowData.key, 'borrada de storage'); // Borrado completado exitosamente
+          })
+          .catch((error) => {
+            console.error('Error al borrar la foto:', error);
+            console.log('Error al borrar la foto. Por favor, inténtalo de nuevo.');
+          });
+      }
+    });
+
+    // Crea un div para poner los botones siempre en horizontal y no se cambien a vertical
+    const buttonsAcciones = document.createElement('div');
+    buttonsAcciones.className = 'd-flex justify-content-center';
+    buttonsAcciones.appendChild(editButton);
+    buttonsAcciones.appendChild(deleteButton);
+    columnaAcciones.appendChild(buttonsAcciones);
+  });
+}
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarDatosFirebase">actualizarDatosFirebase</a></li><li><a href="global.html#buscarEnAlergenos">buscarEnAlergenos</a></li><li><a href="global.html#buscarEnDetalles">buscarEnDetalles</a></li><li><a href="global.html#cambiarEstiloBoton">cambiarEstiloBoton</a></li><li><a href="global.html#comprobarMaximo">comprobarMaximo</a></li><li><a href="global.html#deleteDataPedidos">deleteDataPedidos</a></li><li><a href="global.html#deleteDataRaciones">deleteDataRaciones</a></li><li><a href="global.html#esCero">esCero</a></li><li><a href="global.html#esPositivo">esPositivo</a></li><li><a href="global.html#establecerCookie">establecerCookie</a></li><li><a href="global.html#formatFecha">formatFecha</a></li><li><a href="global.html#insertDataRaciones">insertDataRaciones</a></li><li><a href="global.html#introducirDatosFirebase">introducirDatosFirebase</a></li><li><a href="global.html#isValidInteger">isValidInteger</a></li><li><a href="global.html#mostrar">mostrar</a></li><li><a href="global.html#mostrarHistoricoFunction">mostrarHistoricoFunction</a></li><li><a href="global.html#mostrarRaciones">mostrarRaciones</a></li><li><a href="global.html#noCoincide">noCoincide</a></li><li><a href="global.html#obtenerCookie">obtenerCookie</a></li><li><a href="global.html#obtenerInformacionUsuario">obtenerInformacionUsuario</a></li><li><a href="global.html#obtenerMes">obtenerMes</a></li><li><a href="global.html#obtenerSemana">obtenerSemana</a></li><li><a href="global.html#ocultarHistoricoFunction">ocultarHistoricoFunction</a></li><li><a href="global.html#ordenarPedidos">ordenarPedidos</a></li><li><a href="global.html#parseAlergenos">parseAlergenos</a></li><li><a href="global.html#pintarDatos">pintarDatos</a></li><li><a href="global.html#ponerIdioma">ponerIdioma</a></li><li><a href="global.html#ponerIdiomaClass">ponerIdiomaClass</a></li><li><a href="global.html#rellenarTablas">rellenarTablas</a></li><li><a href="global.html#sanitizeInput">sanitizeInput</a></li><li><a href="global.html#searchDataPedidos">searchDataPedidos</a></li><li><a href="global.html#searchDataRaciones">searchDataRaciones</a></li><li><a href="global.html#seleccionarIdioma">seleccionarIdioma</a></li><li><a href="global.html#seleccionarIdiomaClass">seleccionarIdiomaClass</a></li><li><a href="global.html#selectAllDataPedidos">selectAllDataPedidos</a></li><li><a href="global.html#selectAllDataRaciones">selectAllDataRaciones</a></li><li><a href="global.html#selectAllDataResults">selectAllDataResults</a></li><li><a href="global.html#selectData">selectData</a></li><li><a href="global.html#selectDataUsuario">selectDataUsuario</a></li><li><a href="global.html#sendEmail">sendEmail</a></li><li><a href="global.html#sendEmailRecoger">sendEmailRecoger</a></li><li><a href="global.html#sendEmailRecogido">sendEmailRecogido</a></li><li><a href="global.html#setRowStyles">setRowStyles</a></li><li><a href="global.html#updateData">updateData</a></li><li><a href="global.html#updateDataPedidos">updateDataPedidos</a></li><li><a href="global.html#updateDataPedidosFecha">updateDataPedidosFecha</a></li><li><a href="global.html#validarInput">validarInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Apr 23 2024 19:18:20 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
