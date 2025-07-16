@@ -26,11 +26,13 @@ onAuthStateChanged(auth, (user) => {
     let paginaActual = window.location.pathname;
     // Verifica si está en la página index.html
     if (paginaActual === "/" || paginaActual === "/index.html") {
-        window.location.href = "/pages/login.html";
+        //window.location.href = "/pages/login.html";
+        window.location.href = './pages/login.html';
+
     }
     // Verifica si está en la página datos.html
     else{
-        window.location.href = "/pages/login.html";
+        window.location.href = "./pages/login.html";
     }
     // console.log("usuario NO logeado");
   }
