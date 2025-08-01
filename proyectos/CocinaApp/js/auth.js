@@ -29,12 +29,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         const user = userCredential.user;
         console.log(user);
           //solo si el usuario es el administrador de cocina accede
-          if(admin_email.includes(email)){
-        alert("Acceso Correcto");
-        setTimeout(() => {
+        if(admin_email.includes(email)){
+          alert("Acceso Correcto");
           //envio a la pagina principal
           window.location.href = '../index.html';
-        }, 3000); // espera 1 segundo tras cerrar el alert
       }else{
         alert("Acceso Incorrecto, no esta en la lista de administradores");
         window.location.reload();
