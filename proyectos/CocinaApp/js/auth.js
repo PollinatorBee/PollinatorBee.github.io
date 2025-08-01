@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         setTimeout(() => {
           //envio a la pagina principal
           window.location.href = '../index.html';
-        }, 1000); // espera 1 segundo tras cerrar el alert
+        }, 3000); // espera 1 segundo tras cerrar el alert
       }else{
         alert("Acceso Incorrecto, no esta en la lista de administradores");
         window.location.reload();
