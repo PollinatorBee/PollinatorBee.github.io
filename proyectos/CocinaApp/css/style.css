@@ -221,18 +221,13 @@ footer{
 
 .detalle-racion {
   flex: 2;
+  word-wrap: break-word; /* el nombre puede romper línea si es largo */
 }
 
-.detalle-cantidad {
-  flex: 1;
-  text-align: center;
-  color: #555;
-}
-
+.detalle-cantidad,
 .detalle-precio {
-  flex: 1;
-  text-align: right;
-  font-weight: bold;
-  color: #333;
+  flex: 0 0 auto;         /* evita que se estiren o bajen */
+  white-space: nowrap;    /* nunca hacen salto de línea */
 }
+
 
