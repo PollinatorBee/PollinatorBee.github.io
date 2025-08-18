@@ -212,8 +212,8 @@ footer{
 
 .detalle-item {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr; /* 3 columnas: nombre, cantidad, precio */
-  gap: 8px;
+  grid-template-columns: 2fr 0.8fr 1fr; /* nombre | cantidad | precio */
+  gap: 10px;
   align-items: center;
   background: #f8f9fa;
   padding: 4px 8px;
@@ -225,19 +225,22 @@ footer{
   word-wrap: break-word;
 }
 
-.detalle-cantidad,
-.detalle-precio {
-  text-align: center;
+.detalle-cantidad {
+  text-align: center;   /* centrado en su columna */
   white-space: nowrap;
 }
+
 .detalle-precio {
+  text-align: right;    /* bien alineado a la derecha */
   font-weight: bold;
+  white-space: nowrap;
 }
 
 #pedidosTable td,
 #pedidosTableHistorico td {
-  vertical-align: middle !important; /* centra contenido verticalmente */
+  vertical-align: middle !important;
 }
+
 
 
 
