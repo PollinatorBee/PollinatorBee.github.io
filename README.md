@@ -5,6 +5,7 @@
 He utilizado mayormente:
 
 Javascript, HTML y CSS para web.
+
 C#, Unity y Blender para videojuegos. 
 
 Actualmente estoy expandiendo mis conocimientos creando aplicaciones con Java y Gradle, y de testing automatico.
