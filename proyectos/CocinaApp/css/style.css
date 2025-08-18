@@ -201,3 +201,11 @@ footer{
   #noMostrarHistorico {
     display: none;
   }
+
+#pedidosTable .table-sm td, 
+#pedidosTable .table-sm th,
+#pedidosTableHistorico .table-sm td, 
+#pedidosTableHistorico .table-sm th {
+  padding: 0.3rem; /* menos espacio */
+  font-size: 0.9rem;
+}
