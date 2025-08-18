@@ -18,7 +18,7 @@
   <div class="card shadow-lg">
     <div class="card-header mx-2 d-flex justify-content-between row align-items-center">
       <h2 id="liPedidos">Lista de Pedidos</h2>
-      <div class="d-flex  row align-items-center">
+      <div class="d-flex row align-items-center">
         <a href="#" id="mostrarHistorico" class="btn btn-sm btn-primary mx-2"></a>
         <a href="#" id="noMostrarHistorico" class="btn btn-sm btn-danger mx-2"><i class="bi bi-x-square"></i></a> 
         <div>
@@ -30,45 +30,48 @@
           </div>
         </div> 
       </div>
-      
     </div>
+
     <div class="card-body">
+
+      <!-- Tabla pedidos -->
       <div class="table-responsive">
-        <table class="table" id="pedidosTable">
+        <table class="table table-striped table-bordered" id="pedidosTable">
           <thead>
             <tr class="table-secondary text-center">
-              <th id="tPedido"></th>
-              <th id="tUsusario"></th>
-              <th id="tDetalles"></th>
-              <th id="tComentarios"></th>
-              <th id="tFechaR"></th>
-              <th id="tpTotal"></th>
-              <th id="tEstado"></th>
-              <th id="tAcciones"></th>
+              <th id="tPedido">Pedido</th>
+              <th id="tUsusario">Usuario</th>
+              <th id="tDetalles" class="t-detalles">Detalles</th>
+              <th id="tComentarios">Comentarios</th>
+              <th id="tFechaR">Fecha</th>
+              <th id="tpTotal">Total</th>
+              <th id="tEstado">Estado</th>
+              <th id="tAcciones">Acciones</th>
             </tr>
           </thead>
-          <tbody>
-    
-          </tbody>
-        </table>
-        <table class="table" id="pedidosTableHistorico" style="display: none">
-          <thead>
-            <tr class="table-secondary text-center">
-              <th id="tPedidoh"></th>
-              <th id="tUsusarioh"></th>
-              <th id="tDetallesh"></th>
-              <th id="tComentariosh"></th>
-              <th id="tFechaRh"></th>
-              <th id="tpTotalh"></th>
-              <th id="tEstadoh"></th>
-              <th id="tAccionesh"></th>
-            </tr>
-          </thead>
-          <tbody>
-    
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
+
+      <!-- Tabla histórico -->
+      <div class="table-responsive" style="display: none;">
+        <table class="table table-striped table-bordered" id="pedidosTableHistorico">
+          <thead>
+            <tr class="table-secondary text-center">
+              <th id="tPedidoh">Pedido</th>
+              <th id="tUsusarioh">Usuario</th>
+              <th id="tDetallesh" class="t-detalles">Detalles</th>
+              <th id="tComentariosh">Comentarios</th>
+              <th id="tFechaRh">Fecha</th>
+              <th id="tpTotalh">Total</th>
+              <th id="tEstadoh">Estado</th>
+              <th id="tAccionesh">Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
