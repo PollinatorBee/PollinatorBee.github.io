@@ -8,9 +8,9 @@
 </head>
 <body>
   <header>
-    <img src="assets/img/banner.png" alt="Veronica Cenoz - Web & Game Developer" class="banner" />
+    <img src="../assets/img/banner.png" alt="Veronica Cenoz - Web & Game Developer" class="banner" />
     <nav>
-      <button id="lang-toggle">🇪🇸 Español</button>
+      <a href="../index.html">🇪🇸 Español</a>
     </nav>
   </header>
 
@@ -45,11 +45,11 @@
   <section>
     <h2>Featured Projects</h2>
     <div class="project">
-      <a href="projects/CocinaApp/index.html">
+      <a href="../proyectos/CocinaApp/index.html">
         <h3>🌐 Dynamic website for managing kitchen services</h3>
       </a>
-        <p>Website developed with pure JavaScript, HTML, and CSS. Final project of the DAW program, currently used as an administrative site for the cooking course instructors to manage orders and portions according to changes made in the cloud database. Responsive interface and modular logic.</p>
-        <p><a href="https://tu-usuario.github.io/proyecto-web" target="_blank">🌐 View demo</a></p>
+      <p>Website developed with pure JavaScript, HTML, and CSS. Final project of the DAW program, currently used as an administrative site for the cooking course instructors to manage orders and portions according to changes made in the cloud database. Responsive interface and modular logic.</p>
+      <p><a href="https://tu-usuario.github.io/proyecto-web" target="_blank">🌐 View demo</a></p>
     </div>
     <br>
     <div class="project">
@@ -69,32 +69,12 @@
     <p>📧 <strong>Email:</strong> veronicacenoz@gmail.com</p>
   </footer>
 
-<script>
-  const toggleBtn = document.getElementById('lang-toggle');
-  const translations = {
-    'About Me': 'Sobre mí',
-    'Education': 'Formación',
-    'Skills': 'Habilidades',
-    'Featured Projects': 'Proyectos Destacados',
-    '🇪🇸 Español': '🇬🇧 English',
-    '🌐 Dynamic website for managing kitchen services': '🌐 Sitio web dinámico para administrar los servicios de cocina',
-    '🎮 VR Game: "Project EVA: HistorIA"': '🎮 Videojuego VR: “Proyecto EVA: HistorIA”',
-    '🎮 VR Game: "Serene Paths"': '🎮 Videojuego VR: “Senderos Serenos”'
-  };
-
-  let english = true;
-
-  toggleBtn.addEventListener('click', () => {
-    english = !english;
-
-    document.querySelectorAll('h2, h3').forEach(el => {
-      if(translations[el.textContent]) {
-        el.textContent = english ? Object.keys(translations).find(key => translations[key] === el.textContent) || el.textContent : translations[el.textContent];
-      }
-    });
-
-    toggleBtn.textContent = english ? '🇪🇸 Español' : '🇬🇧 English';
-  });
-</script>
+  <script>
+    // Aquí podrías añadir el toggle de fuente si lo necesitas
+    // const toggleBtn = document.getElementById('toggle-font');
+    // toggleBtn.addEventListener('click', () => {
+    //   document.body.classList.toggle('pixel-font');
+    // });
+  </script>
 </body>
 </html>
