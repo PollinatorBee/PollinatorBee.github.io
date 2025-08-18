@@ -4,64 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio - Web & Game Developer</title>
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <header>
-    <img src="../assets/img/banner.png" alt="Veronica Cenoz - Web & Game Developer" class="banner" />
-
+    <img src="assets/img/banner.png" alt="Veronica Cenoz - Web & Game Developer" class="banner" />
     <nav>
-      <a href="../index.html">🌐 Español</a>
+      <button id="lang-toggle">🇪🇸 Español</button>
     </nav>
   </header>
 
   <section>
     <h2>About Me</h2>
     <p>
-      I'm a junior developer specialized in web development (DAW) and game/VR development.
-      I'm passionate about creating interactive experiences and combining creativity with technology.
-      I currently have more practical experience in JavaScript and C#, especially using Unity.
+      I am a recently graduated developer with training in web development (DAW) and a specialization in video games and virtual reality.
+      I enjoy combining the real with the digital and providing everyone access to information, services, and experiences that are not accessible to all.
+      Although during my academic development I have used other languages (Java, PHP) and technologies (Photoshop, AngularJS, Blender),
+      I currently have more experience with JavaScript, C#, and Unity due to the projects I have built.
     </p>
   </section>
 
   <section>
     <h2>Education</h2>
     <ul>
-      <li><strong>Specialization Course in Game & VR Development</strong> (2024–2025)</li>
-      <li><strong>Advanced Degree in Web Application Development (DAW)</strong> (2021–2024)</li>
-      <li><strong>Intermediate Degree in Microcomputer Systems & Networks (SMR)</strong> (2020–2021)</li>
+      <li><strong>Specialization Course in Video Games and Virtual Reality</strong> (2024–2025)</li>
+      <li><strong>Higher Degree in Web Application Development (DAW)</strong> (2021–2024)</li>
+      <li><strong>Intermediate Degree in Microcomputer Systems and Networks (SMR)</strong> (2019–2021)</li>
     </ul>
   </section>
 
   <section>
     <h2>Skills</h2>
     <ul>
-      <li>Languages: JavaScript, C#, HTML, CSS</li>
-      <li>Tools: Unity, Blender, Photoshop, Git</li>
-      <li>English Level: C1</li>
+      <li>Languages: JavaScript, C#, HTML, CSS, MySQL</li>
+      <li>Tools: Unity, Blender, Git, Firebase</li>
+      <li>Languages: Native Spanish. English Level C1.</li>
     </ul>
   </section>
 
   <section>
     <h2>Featured Projects</h2>
-
-    <h3>🎮 VR Game: “AI VR Project”</h3>
-    <p>Developed in Unity with GPT-4 integration to create a conversational VR experience.</p>
-    <p><a href="https://github.com/tu-usuario/proyecto-vr" target="_blank">🔗 View repository</a></p>
-
-    <h3>🌐 Dynamic Website (DAW)</h3>
-    <p>Website built using pure JavaScript, HTML and CSS. Final project for DAW cycle, with responsive layout and modular logic.</p>
-    <p><a href="https://github.com/tu-usuario/proyecto-web" target="_blank">🔗 View repository</a> | <a href="https://tu-usuario.github.io/proyecto-web" target="_blank">🌐 Live demo</a></p>
+    <div class="project">
+      <a href="projects/CocinaApp/index.html">
+        <h3>🌐 Dynamic website for managing kitchen services</h3>
+      </a>
+        <p>Website developed with pure JavaScript, HTML, and CSS. Final project of the DAW program, currently used as an administrative site for the cooking course instructors to manage orders and portions according to changes made in the cloud database. Responsive interface and modular logic.</p>
+        <p><a href="https://tu-usuario.github.io/proyecto-web" target="_blank">🌐 View demo</a></p>
+    </div>
+    <br>
+    <div class="project">
+      <h3>🎮 VR Game: "Project EVA: HistorIA"</h3>
+      <p>Developed in collaboration with the Barcelona Technology Institute, using the Unity engine, with GPT-4 API integration to create an AI conversational experience in virtual reality.</p>
+      <p><a href="https://youtu.be/JMuA8vl3o4c" target="_blank">🔗 YouTube Link</a></p>
+    </div>
+    <br>
+    <div class="project">
+      <h3>🎮 VR Game: "Serene Paths"</h3>
+      <p>Developed in collaboration with the Barcelona Technology Institute, using the Unity engine, with GPT-4 API integration to create an AI conversational experience in virtual reality.</p>
+      <p><a href="https://youtu.be/oRMXH5Szlqo" target="_blank">🔗 YouTube Link</a></p>
+    </div>
   </section>
 
   <footer>
-    <p>📧 Contact: veronicacenoz@gmail.com | <a href="https://github.com/tu-usuario">GitHub</a></p>
+    <p>📧 <strong>Email:</strong> veronicacenoz@gmail.com</p>
   </footer>
-</body>
+
 <script>
-    const toggleBtn = document.getElementById('toggle-font');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('pixel-font');
+  const toggleBtn = document.getElementById('lang-toggle');
+
+  const translations = {
+    'About Me': 'Sobre mí',
+    'Education': 'Formación',
+    'Skills': 'Habilidades',
+    'Featured Projects': 'Proyectos Destacados',
+    '🇪🇸 Español': '🇬🇧 English',
+    '🌐 Dynamic website for managing kitchen services': '🌐 Sitio web dinámico para administrar los servicios de cocina',
+    '🎮 VR Game: "Project EVA: HistorIA"': '🎮 Videojuego VR: “Proyecto EVA: HistorIA”',
+    '🎮 VR Game: "Serene Paths"': '🎮 Videojuego VR: “Senderos Serenos”'
+  };
+
+  let english = true;
+
+  toggleBtn.addEventListener('click', () => {
+    english = !english;
+
+    document.querySelectorAll('h2, h3').forEach(el => {
+      if(translations[el.textContent]) {
+        el.textContent = english ? Object.keys(translations).find(key => translations[key] === el.textContent) || el.textContent : translations[el.textContent];
+      }
     });
-  </script>
+
+    toggleBtn.textContent = english ? '🇪🇸 Español' : '🇬🇧 English';
+  });
+</script>
+</body>
 </html>
