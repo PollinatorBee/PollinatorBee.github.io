@@ -237,7 +237,7 @@ footer{
 }
 
 #pedidosTable td,
-#racionesTable, td,
+#racionesTable td,
 #pedidosTableHistorico td {
   vertical-align: middle !important;
 }
