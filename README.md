@@ -3,6 +3,7 @@
 🎮 Soy desarrolladora de software junior con formación en desarrollo web y especialización en videojuegos y realidad virtual. 
 
 He utilizado mayormente:
+
 Javascript, HTML y CSS para web.
 C#, Unity y Blender para videojuegos. 
 
