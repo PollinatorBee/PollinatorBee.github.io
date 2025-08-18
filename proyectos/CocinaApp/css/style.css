@@ -231,4 +231,10 @@ footer{
   white-space: nowrap;    /* nunca hacen salto de línea */
 }
 
+#pedidosTable td,
+#pedidosTableHistorico td {
+  vertical-align: middle !important; /* centra contenido verticalmente */
+}
+
+
 
