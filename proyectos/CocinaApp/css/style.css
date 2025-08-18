@@ -242,6 +242,10 @@ footer{
   vertical-align: middle !important;
 }
 
+#racionesTable img {
+  max-height: 80px; /* ajusta según lo que te quede mejor */
+  object-fit: cover; /* recorta sin deformar */
+}
 
 
 
