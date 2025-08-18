@@ -211,8 +211,9 @@ footer{
 }
 
 .detalle-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* 3 columnas: nombre, cantidad, precio */
+  gap: 8px;
   align-items: center;
   background: #f8f9fa;
   padding: 4px 8px;
@@ -221,14 +222,16 @@ footer{
 }
 
 .detalle-racion {
-  flex: 2;
-  word-wrap: break-word; /* el nombre puede romper línea si es largo */
+  word-wrap: break-word;
 }
 
 .detalle-cantidad,
 .detalle-precio {
-  flex: 0 0 auto;         /* evita que se estiren o bajen */
-  white-space: nowrap;    /* nunca hacen salto de línea */
+  text-align: center;
+  white-space: nowrap;
+}
+.detalle-precio {
+  font-weight: bold;
 }
 
 #pedidosTable td,
