@@ -202,10 +202,37 @@ footer{
     display: none;
   }
 
-#pedidosTable .table-sm td, 
-#pedidosTable .table-sm th,
-#pedidosTableHistorico .table-sm td, 
-#pedidosTableHistorico .table-sm th {
-  padding: 0.3rem; /* menos espacio */
+.detalles-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.detalle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 6px;
   font-size: 0.9rem;
 }
+
+.detalle-racion {
+  flex: 2;
+}
+
+.detalle-cantidad {
+  flex: 1;
+  text-align: center;
+  color: #555;
+}
+
+.detalle-precio {
+  flex: 1;
+  text-align: right;
+  font-weight: bold;
+  color: #333;
+}
+
