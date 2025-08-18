@@ -257,7 +257,26 @@ async function rellenarTablas(tablaId, data, mostrarBotonEditable) {
       columnaUsuario.appendChild(link);
 
       // Inserta detalles de la orden
-      columnaDetalles.innerHTML = rowData.detalles.map(detalle => `<b>${detalle.racion}</b> </br>&emsp;cantidad: <b>${detalle.cantidad}</b> </br>&emsp;precio: <b>${detalle.precio.toFixed(2)} €</b>`).join('<br>');
+       columnaDetalles.innerHTML = `
+        <table class="table table-sm table-bordered mb-0 text-center">
+          <thead class="thead-light">
+            <tr>
+              <th>Ración</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowData.detalles.map(detalle => `
+              <tr>
+                <td><b>${detalle.racion}</b></td>
+                <td>${detalle.cantidad}</td>
+                <td>${detalle.precio.toFixed(2)} €</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
       columnaComentarios.textContent = rowData.comentarios || '';
       columnaFechaR.textContent = rowData.fecha_entrega;
       columnaPrecioTotal.textContent = `${rowData.precio_total.toFixed(2)}€`;
