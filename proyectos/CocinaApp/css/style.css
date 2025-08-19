@@ -249,15 +249,15 @@ footer{
 
 /* ----------------- TABLAS RESPONSIVE EN MÓVIL ----------------- */
 @media (max-width: 768px) {
-  #pedidosTable, #pedidosTableHistorico {
+  #pedidosTable, #racionesTable, #pedidosTableHistorico {
     display: block;
   }
 
-  #pedidosTable thead, #pedidosTableHistorico thead {
+  #pedidosTable thead, #racionesTable thead, #pedidosTableHistorico thead {
     display: none;
   }
 
-  #pedidosTable tbody tr, #pedidosTableHistorico tbody tr {
+  #pedidosTable tbody tr, #racionesTable tbody tr, #pedidosTableHistorico tbody tr {
     display: block;
     margin-bottom: 1rem;
     border: 1px solid #ddd;
@@ -265,14 +265,14 @@ footer{
     padding: 0.5rem;
   }
 
-  #pedidosTable tbody td, #pedidosTableHistorico tbody td {
+  #pedidosTable tbody td, #racionesTable tbody td, #pedidosTableHistorico tbody td {
     display: flex;
     justify-content: space-between;
     padding: 0.25rem 0.5rem;
     text-align: right;
   }
 
-  #pedidosTable tbody td::before, #pedidosTableHistorico tbody td::before {
+  #pedidosTable tbody td::before, #racionesTable tbody td::before, #pedidosTableHistorico tbody td::before {
     content: attr(data-label);
     font-weight: bold;
     text-align: left;
