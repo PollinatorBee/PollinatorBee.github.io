@@ -22,7 +22,7 @@
     <div class="card-body">
       <form action="#" method="get">
         <div class="table-responsive">
-          <table class="table table-striped text-center">
+          <table class="table table-striped text-center" id="racionesTable>
             <thead>
               <tr class="table-secondary">
                 <th id="tNombre"></th>
@@ -39,19 +39,19 @@
             <!-- una racion -->
             <tr>
               <form action="" method="get">
-              <td><input type="text" name="nombre_raciones" id="nombre_raciones" value="Ensalada Mixta" class="text-center" required></td>
-              <td>
+              <td data-label="Nombre"><input type="text" name="nombre_raciones" id="nombre_raciones" value="Ensalada Mixta" class="text-center" required></td>
+              <td data-label="Foto">
                 <label for="imagenInput">
                   <img id="selectedImage" src="../images/raciones/seleccion.jpeg" alt="Seleccionar Imagen" width="150">
                 </label>
                 <input type="file" id="imagenInput" style="display: none;" accept="image/*">
               </td>
-              <td><input type="text" name="descripcion_raciones" id="descripcion_raciones" value="Ensalada de lechuga, tomate, cebolla, maíz, huevo y atun" class="text-center"></td>
-              <td><input type="text" name="alergenos_raciones" id="alergenos_raciones" value="huevos, maíz" class="text-center"></td>
-              <td><input type="number" name="precio_raciones" id="precio_raciones" value="7.99" class="text-center" style="width: 80px;" required min="0"></td>
-              <td><input type="number" name="stock_raciones" id="stock_raciones" value="9" class="text-center" style="width: 80px;" required min="0"></td>
-              <td><input type="number" name="maximo_raciones" id="maximo_raciones" class="text-center" style="width: 80px;" required min="0"></td>
-              <td>
+              <td data-label="Descripcion"><input type="text" name="descripcion_raciones" id="descripcion_raciones" value="Ensalada de lechuga, tomate, cebolla, maíz, huevo y atun" class="text-center"></td>
+              <td data-label="Alergenos"><input type="text" name="alergenos_raciones" id="alergenos_raciones" value="huevos, maíz" class="text-center"></td>
+              <td data-label="Precio"><input type="number" name="precio_raciones" id="precio_raciones" value="7.99" class="text-center" style="width: 80px;" required min="0"></td>
+              <td data-label="Stock"><input type="number" name="stock_raciones" id="stock_raciones" value="9" class="text-center" style="width: 80px;" required min="0"></td>
+              <td data-label="Maximo"><input type="number" name="maximo_raciones" id="maximo_raciones" class="text-center" style="width: 80px;" required min="0"></td>
+              <td data-label="Acciones">
                 <div class="d-flex justify-content-center">
                   <a id="editButton" class="btn btn-sm btn-outline-primary"><i class="bi bi-floppy"></i></a>
                 <a href="raciones.html" class="btn btn-sm btn-outline-danger"><i class="bi bi-x-square"></i></a>
