@@ -247,5 +247,35 @@ footer{
   object-fit: cover; /* recorta sin deformar */
 }
 
+/* ----------------- TABLAS RESPONSIVE EN MÓVIL ----------------- */
+@media (max-width: 768px) {
+  #pedidosTable, #pedidosTableHistorico {
+    display: block;
+  }
 
+  #pedidosTable thead, #pedidosTableHistorico thead {
+    display: none;
+  }
+
+  #pedidosTable tbody tr, #pedidosTableHistorico tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  #pedidosTable tbody td, #pedidosTableHistorico tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0.5rem;
+    text-align: right;
+  }
+
+  #pedidosTable tbody td::before, #pedidosTableHistorico tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-align: left;
+  }
+}
 
