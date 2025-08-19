@@ -243,6 +243,16 @@ async function rellenarTablas(tablaId, data, mostrarBotonEditable) {
       const columnaAcciones = row.insertCell(7);
       columnaAcciones.style.borderTop = "1px solid #333333";
 
+      //responsive
+      columnaNumero.setAttribute("data-label", "Número");
+      columnaUsuario.setAttribute("data-label", "Usuario");
+      columnaDetalles.setAttribute("data-label", "Detalles");
+      columnaComentarios.setAttribute("data-label", "Comentarios");
+      columnaFechaR.setAttribute("data-label", "Fecha de Entrega");
+      columnaPrecioTotal.setAttribute("data-label", "Precio Total");
+      columnaEstado.setAttribute("data-label", "Estado");
+      columnaAcciones.setAttribute("data-label", "Acciones");
+
       // Inserta contenido en las celdas
       columnaNumero.textContent = rowData.key;
 
