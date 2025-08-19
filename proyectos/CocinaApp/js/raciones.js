@@ -78,6 +78,16 @@ async function mostrarRaciones(data) {
     const columnaMaximo = row.insertCell(6);
     const columnaAcciones = row.insertCell(7);
 
+    //responsive
+    columnaKey.setAttribute("data-label", "Key");
+    columnaFoto.setAttribute("data-label", "Foto");
+    columnaDescripcion.setAttribute("data-label", "Descripcion");
+    columnaAlergenos.setAttribute("data-label", "Alergenos");
+    columnaPrecio.setAttribute("data-label", "Fecha de Precio");
+    columnaStock.setAttribute("data-label", "Stock");
+    columnaMaximo.setAttribute("data-label", "Maximo");
+    columnaAcciones.setAttribute("data-label", "Acciones");
+
     // Añade el contenido a cada celda
     columnaKey.textContent = rowData.key;
     console.log("Añadiendo el src de la foto como la URL obtenida:", urlFoto);
