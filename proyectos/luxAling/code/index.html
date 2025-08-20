@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuxAlign</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Your custom CSS -->
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header" data-anchor="nav">
+  <div class="main-container" id="main-nav-container" tabindex="-1">
+    <!-- Logo -->
+    <div class="nav-icon-logo isnarrow">
+      <a href="#">LuxAlign</a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <nav id="desktop-menu">
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hamburger -->
+    <div class="nav-icon-container">
+      <button id="nav-icon" class="nav-icon" aria-label="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay Menu (mobile only) -->
+  <nav id="overlay-menu">
+    <ul>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center position-relative">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+      <div class="hero-text">
+        <h2>Invisible Aligners</h2>
+        <p>A discreet and effective alternative to traditional braces</p>
+        <a href="#product" class="btn">Get Started</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="../img/landing1.png" alt="Smiling woman with aligners">
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h3>About LuxAlign</h3>
+      <p>LuxAlign specializes in the design and manufacturing of invisible aligners, providing a comfortable and effective solution for dental professionals and their patients.</p>
+    </div>
+  </section>
+
+<!-- Product Section -->
+<section id="product" class="product-section">
+  <div class="container d-flex flex-column flex-md-row align-items-center">
+    <div class="product-text">
+      <h3>Our Product</h3>
+      <p>
+        LuxAlign offers a modern alternative to traditional braces,
+        providing a comfortable and effective treatment option. Our
+        aligners are custom-made to meet the unique needs of each
+        patient and are designed to move teeth gradually and predictably.
+      </p>
+    </div>
+    <div class="product-image">
+      <img src="../img/teething2.png" alt="Aligner close-up">
+    </div>
+  </div>
+</section>
+
+  <!-- Product Information Section -->
+  <section id="product-info" class="section product-info">
+    <div class="product-header">
+      <div class="container">
+        <h2>Product Information</h2>
+        <p>Discover how our invisible aligners can transform your smile.</p>
+      </div>
+    </div>
+    <div class="container ">
+      <div class="product-image text-center">
+        <img src="../img/teething3.png" alt="Aligner example">
+      </div>
+
+      <div class="advantages">
+        <h3>Advantages</h3>
+        <ul>
+          <li><span class="check">✔</span> <strong>Aesthetically pleasing</strong><br>Our aligners are virtually invisible, making them a discreet option.</li>
+          <li><span class="check">✔</span> <strong>Effective treatment</strong><br>Aligners offer the same results as traditional braces in correcting dental issues.</li>
+          <li><span class="check">✔</span> <strong>Comfortable to wear</strong><br>Made from smooth, BPA-free plastic for a snug fit.</li>
+        </ul>
+      </div>
+      <div class="text-center mt-4">
+        <a href="#contact" class="btn learn-more-btn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Expanded Section -->
+  <section id="about-expanded" class="section about-expanded">
+    <div class="about-header">
+      <div class="container d-flex flex-column flex-md-row align-items-center">
+        <div class="about-text">
+          <h2>About Us</h2>
+          <p>LuxAlign specializes in the design and manufacturing of invisible aligners, providing a discreet and effective solution for patients worldwide.</p>
+        </div>
+        <div class="about-image">
+          <img src="../img/abouteeth.png" alt="Smiling woman professional">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="mission-section d-flex flex-column flex-md-row align-items-center">
+        <div class="mission-text">
+          <h3>Our Mission</h3>
+          <p>Our mission is to provide dental professionals with the highest quality invisible aligners, empowering them to offer their patients a discreet and effective orthodontic treatment option.</p>
+          <a href="#contact" class="btn learn-more-btn">Learn More</a>
+        </div>
+        <div class="mission-image">
+          <img src="../img/teething4.png" alt="Invisible aligner close-up">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact">
+    <div class="contact-header">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>We're here to assist you. Whether you have questions about our invisible aligners or need support, our team is ready to help.</p>
+      </div>
+    </div>
+    <div class="container contact-container">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
+        <p><i class="fas fa-envelope"></i> info@luxalign.com</p>
+        <p><i class="fas fa-location-dot"></i> 1234 Anywhere St, City, State 12345</p>
+        <p><i class="fas fa-envelope-open-text"></i> corporate@luxalign.com</p>
+      </div>
+      <div class="contact-form">
+        <h3>Get in Touch</h3>
+        <form>
+          <input type="text" placeholder="Name" required>
+          <input type="email" placeholder="Email" required>
+          <input type="text" placeholder="Phone">
+          <textarea placeholder="Message" rows="5" required></textarea>
+          <button type="submit" class="btn send-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 LuxAlign. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Menu Toggle JS -->
+  <script>
+const navIcon = document.getElementById('nav-icon');
+const overlayMenu = document.getElementById('overlay-menu');
+const menuLinks = overlayMenu.querySelectorAll('a');
+
+navIcon.addEventListener('click', () => {
+  navIcon.classList.toggle('open');
+  overlayMenu.classList.toggle('show');
+});
+
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navIcon.classList.remove('open');
+    overlayMenu.classList.remove('show');
+  });
+});
+  </script>
+</body>
+</html>
