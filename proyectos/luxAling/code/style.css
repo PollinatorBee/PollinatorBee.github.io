@@ -268,7 +268,7 @@ footer {
 
 .product-header {
   background: #daeaf2;
-  padding: 60px 20px;
+  padding: 120px 20px 80px; /* top right/left bottom */
 }
 
 .product-header h2 {
@@ -352,6 +352,7 @@ footer {
 
 
 
+
 /* Contact Section */
 .contact {
   background: #fff;
@@ -362,7 +363,8 @@ footer {
   display: flex;
   flex-direction: column;
   background: #daeaf2;
-  padding: 60px 20px;
+  padding: 120px 20px 80px; /* top right/left bottom */
+
 }
 
 .contact-header h2 {
@@ -502,7 +504,7 @@ footer {
 
 .about-image img {
   max-width: 400px;
-  border-radius: 10px;
+
 }
 
 /* Mission row */
@@ -556,7 +558,31 @@ footer {
   border-radius: 8px;
 }
 
+@media (min-width: 768px) {
+  .about-expanded .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; /* don't stretch across whole container */
+  }
 
+  .about-expanded .mission-text {
+    flex: 1;
+    margin-right: 40px; /* space between text and image */
+  }
+
+  .about-expanded .mission-image {
+    flex: 0 0 auto; /* don't let it grow */
+    display: flex;
+    justify-content: flex-end; /* keep image right-aligned */
+  }
+
+  .about-expanded .mission-image img {
+    max-width: 400px; /* smaller image */
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+  }
+}
 
 
 
