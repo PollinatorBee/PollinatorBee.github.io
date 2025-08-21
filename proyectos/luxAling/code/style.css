@@ -194,6 +194,41 @@ body {
   max-width: 700px;
 }
 
+.about p{
+  max-width: 1000px;
+}
+
+.product-section p{
+  max-width: 700px;
+}
+
+@media (min-width: 768px) {
+  .product-section .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start; /* don't stretch across whole container */
+  }
+
+  .product-section .product-text {
+    flex: 1;
+    margin-right: 40px; /* space between text and image */
+  }
+
+  .product-section .product-image {
+    flex: 0 0 auto; /* don't let it grow */
+    display: flex;
+    justify-content: flex-end; /* keep image right-aligned */
+  }
+
+  .product-section .product-image img {
+    max-width: 400px; /* smaller image */
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+
 .product-info {
   background: #fff;
   padding: 0; /* remove padding so header touches edges */
@@ -206,6 +241,10 @@ body {
 .product-image img {
   max-width: 400px;
   border-radius: 10px;
+}
+
+.product-image {
+  margin-left: 20pxs;
 }
 
 
@@ -292,6 +331,24 @@ footer {
   font-size: 1rem;
   border-radius: 6px;
 }
+
+.product-section .container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#product-info .product-image {
+    text-align: right; /* align the image to the right */
+    margin: 0;         /* remove extra margin */
+}
+#product-info .product-image img {
+    max-width: 100%;   /* allow the image to fill container */
+    width: auto;       /* maintain aspect ratio */
+    height: auto;
+    display: inline-block; /* prevents block auto-margins */
+}
+
 
 
 
