@@ -20,7 +20,26 @@ Mis principales intereses son el **desarrollo backend, el testing y la depuraci�
 - **Bases de datos:** Firebase, MySQL  
 - **Frameworks y herramientas:** Unity, Blender, Postman  
 - **Gestión de proyectos:** Git, GitHub, Azure DevOps, Trello  
-- **Metodologías:** Ágil, Scrum, trabajo colaborativo  
+- **Metodologías:** Ágil, Scrum, trabajo colaborativo
+- ## 🛠️ Skills & Tools  
+
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
+![C#](https://img.shields.io/badge/-C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)  
+![SQL](https://img.shields.io/badge/-SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)  
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  
+
+![Unity](https://img.shields.io/badge/-Unity-000000?style=for-the-badge&logo=unity&logoColor=white)  
+![Blender](https://img.shields.io/badge/-Blender-F5792A?style=for-the-badge&logo=blender&logoColor=white)  
+![Firebase](https://img.shields.io/badge/-Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)  
+![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)  
+
+![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
+![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)  
+![Azure DevOps](https://img.shields.io/badge/-Azure_DevOps-0078D7?style=for-the-badge&logo=azuredevops&logoColor=white)  
+![Trello](https://img.shields.io/badge/-Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)  
+![Postman](https://img.shields.io/badge/-Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)  
+
 
 ---
 
@@ -46,3 +65,4 @@ Desarrollo colaborativo con Git y Trello, validación de incidencias por fases.
 
 ---
 ⭐️ *Explora mis repositorios y no dudes en conectar conmigo en LinkedIn.*  
+
