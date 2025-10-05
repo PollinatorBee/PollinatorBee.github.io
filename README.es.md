@@ -20,8 +20,7 @@ Mis principales intereses son el **desarrollo backend, el testing y la depuraci�
 - **Bases de datos:** Firebase, MySQL  
 - **Frameworks y herramientas:** Unity, Blender, Postman  
 - **Gestión de proyectos:** Git, GitHub, Azure DevOps, Trello  
-- **Metodologías:** Ágil, Scrum, trabajo colaborativo
-- ## 🛠️ Skills & Tools  
+- **Metodologías:** Ágil, Scrum, trabajo colaborativo 
 
 ---
 
@@ -47,6 +46,7 @@ Desarrollo colaborativo con Git y Trello, validación de incidencias por fases.
 
 ---
 ⭐️ *Explora mis repositorios y no dudes en conectar conmigo en LinkedIn.*  
+
 
 
 
