@@ -26,18 +26,19 @@ My main interests are **backend development, testing, and debugging**, and I hol
 
 ## 🚀 Projects  
 
-### 🔹 [Order Management Web App – FP Cocina](https://github.com/tu-usuario/order-management)  
-Responsive web application with authentication, Firestore database, and hosting on Firebase.  
+### 🔹 [Order Management Web App – FP Cocina](https://github.com/tu-usuario/kitchen-management)  
+Responsive web application with user authentication, Firestore database, and Firebase hosting. Developed as an administration platform for my school’s cooking classroom to manage dishes and edit client orders (teachers at the school). Designed to work alongside a mobile application for clients to register and place their orders.  
 Team development with documentation for both users and developers.  
 
 ### 🔹 [Historical Characters with AI (VR + GPT-4)](https://github.com/tu-usuario/historical-characters-ai)  
 Educational VR game with interactive dialogues powered by AI.  
-Developed in Unity with C#, GPT-4 integration, Blender modeling, and iterative user testing.  
+Developed in Unity with C#, GPT-4 integration, Blender modeling, and iterative user testing.
+Team development as part of a bigger proyect for another school. 
 
 ### 🔹 [Sendero Sereno (Unity VR)](https://github.com/tu-usuario/sendero-sereno)  
 Immersive VR video game with 3D environments and user interaction controls.  
-Collaborative development with Git and Trello, phased issue validation.  
-
+Collaborative development with Git and Trello, phased issue validation.
+Team development with design documentation.
 ---
 
 ## 📫 Contact  
