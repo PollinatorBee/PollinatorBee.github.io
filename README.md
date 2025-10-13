@@ -43,8 +43,8 @@ Team development with design documentation.
 ---
 
 ## 📫 Contact  
-- 💼 [LinkedIn](https://www.linkedin.com/in/tu-perfil)  
-- 📧 Email: tu-email@example.com  
+- 💼 [LinkedIn](www.linkedin.com/in/veronicacenoz)  
+- 📧 Email: cenozveronicadev@gmail.com  
 
 ---
 ⭐️ *Feel free to explore my repositories and connect with me on LinkedIn!*  
