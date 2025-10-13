@@ -39,6 +39,7 @@ Team development as part of a bigger proyect for another school.
 Immersive VR video game with 3D environments and user interaction controls.  
 Collaborative development with Git and Trello, phased issue validation.
 Team development with design documentation.
+
 ---
 
 ## 📫 Contact  
