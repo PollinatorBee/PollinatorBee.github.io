@@ -41,11 +41,12 @@ Desarrollo colaborativo con Git y Trello, validación de incidencias por fases.
 ---
 
 ## 📫 Contacto  
-- 💼 [LinkedIn](https://www.linkedin.com/in/tu-perfil)  
+- 💼 [LinkedIn](www.linkedin.com/in/veronicacenoz)  
 - 📧 Email: cenozveronicadev@gmail.com  
 
 ---
 ⭐️ *Explora mis repositorios y no dudes en conectar conmigo en LinkedIn.*  
+
 
 
 
