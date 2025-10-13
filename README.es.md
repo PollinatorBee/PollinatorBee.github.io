@@ -26,26 +26,27 @@ Mis principales intereses son el **desarrollo backend, el testing y la depuraci�
 
 ## 🚀 Proyectos  
 
-### 🔹 [Gestor de Pedidos – FP Cocina](https://github.com/tu-usuario/order-management)  
+### 🔹 [Gestor de Pedidos – FP Cocina](https://github.com/PollinatorBee/kitchen-management.git)  
 Aplicación web responsive con autenticación, base de datos Firestore y hosting en Firebase.  
 Desarrollo en equipo con documentación para usuarios y desarrolladores.  
 
-### 🔹 [Personajes Históricos con IA (VR + GPT-4)](https://github.com/tu-usuario/historical-characters-ai)  
+### 🔹 [Personajes Históricos con IA (VR + GPT-4)](https://github.com/PollinatorBee/historical-characters.git)  
 Videojuego educativo VR con diálogos dinámicos impulsados por IA.  
 Desarrollado en Unity con C#, integración de GPT-4, modelado en Blender y testing iterativo con usuarios.  
 
-### 🔹 [Sendero Sereno (Unity VR)](https://github.com/tu-usuario/sendero-sereno)  
+### 🔹 [Sendero Sereno (Unity VR)](https://github.com/PollinatorBee/sendero-sereno.git)  
 Videojuego inmersivo en VR con entornos 3D y controles de usuario.  
 Desarrollo colaborativo con Git y Trello, validación de incidencias por fases.  
 
 ---
 
 ## 📫 Contacto  
-- 💼 [LinkedIn](www.linkedin.com/in/veronicacenoz)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/veronicacenoz)  
 - 📧 Email: cenozveronicadev@gmail.com  
 
 ---
 ⭐️ *Explora mis repositorios y no dudes en conectar conmigo en LinkedIn.*  
+
 
 
 
