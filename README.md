@@ -35,7 +35,7 @@ Educational VR game with interactive dialogues powered by AI.
 Developed in Unity with C#, GPT-4 integration, Blender modeling, and iterative user testing.
 Team development as part of a bigger proyect for another school. 
 
-### 🔹 [Sendero Sereno (Unity VR)](https://github.com/tu-usuario/sendero-sereno)  
+### 🔹 [Sendero Sereno (Unity VR)](https://github.com/PollinatorBee/sendero-sereno)  
 Immersive VR video game with 3D environments and user interaction controls.  
 Collaborative development with Git and Trello, phased issue validation.
 Team development with design documentation.
