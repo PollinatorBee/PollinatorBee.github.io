@@ -43,7 +43,7 @@ Team development with design documentation.
 ---
 
 ## 📫 Contact  
-- 💼 [LinkedIn](www.linkedin.com/in/veronicacenoz)  
+- 💼 [LinkedIn](https://www.linkedin.com/in/veronicacenoz)  
 - 📧 Email: cenozveronicadev@gmail.com  
 
 ---
