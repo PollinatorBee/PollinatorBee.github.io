@@ -30,7 +30,7 @@ My main interests are **backend development, testing, and debugging**, and I hol
 Responsive web application with user authentication, Firestore database, and Firebase hosting. 
 Team development with documentation for both users and developers.
 
-### 🔹 [Historical Characters with AI (VR + GPT-4)](https://github.com/tu-usuario/historical-characters-ai)  
+### 🔹 [Historical Characters with AI (VR + GPT-4)](https://github.com/PollinatorBee/historical-characters.git)  
 Educational VR game with interactive dialogues powered by AI.  
 Developed in Unity with C#, GPT-4 integration, Blender modeling, and iterative user testing.
 Team development as part of a bigger proyect for another school. 
