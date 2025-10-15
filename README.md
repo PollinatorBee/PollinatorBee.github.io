@@ -1,4 +1,4 @@
-🌐 Available in [English](./README.md) | Disponible en [Español](./README.es.md)
+🌐 Disponible en [Español](./README.es.md)
 
 # 👋 Hi, I'm Veronica (PollinatorBee)  
 
@@ -65,7 +65,7 @@ Immersive VR experience with 3D environments and user interaction controls.
 
 ## 📫 Contact  
 - 💼 [LinkedIn](https://www.linkedin.com/in/veronicacenoz)  
-- 📧 Email: cenozveronicadev@gmail.com  
+- 📧 cenozveronicadev@gmail.com  
 
 ---
 ⭐️ *Feel free to explore my repositories and connect with me on LinkedIn!*  
