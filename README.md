@@ -2,43 +2,64 @@
 
 # 👋 Hi, I'm Veronica (PollinatorBee)  
 
-🎮 **Junior Software Developer** | Web Applications & Virtual Reality Games  
+💻 **Junior Fullstack Developer** | Web Applications & Virtual Reality 
 
 ---
 
-## About Me  
-I am a junior software developer with a background in **Web Application Development** and a specialization in **video games and virtual reality**.  
+## 🌱 About Me  
+I’m a junior fullstack developer with a background in **Web Application Development** and a specialization in **Video Games and Virtual Reality**.  
 
-I have experience building web applications with **JavaScript, Firebase, and SQL**, as well as developing VR projects in **Unity and C#**.  
-My main interests are **backend development, testing, and debugging**, and I hold a **C1 English certification (Cambridge CAE)** that allows me to work confidently in international environments.  
+I’ve worked on both the **frontend** (JavaScript, HTML, CSS, Firebase) and **backend** (C#, .NET, SQL) sides of development, building responsive web apps and immersive VR experiences.  
+
+During my internship at **Tracasa Instrumental**, I collaborated on maintaining internal .NET applications using **Visual Studio, C#, and AngularJS**, and supported integration and testing tasks in an Agile team environment.  
+
+I’m passionate about **clean, maintainable code**, user-centered design, and learning modern technologies such as **React, Next.js, and ASP.NET Core**.  
+I also hold a **C1 English certification (Cambridge CAE)** and enjoy working in international, collaborative environments.  
 
 ---
 
 ## 🛠️ Skills & Tools  
 
-- **Languages:** JavaScript, C#, SQL, HTML/CSS  
-- **Databases:** Firebase, MySQL  
-- **Frameworks & Tools:** Unity, Blender, Postman  
-- **Project Management:** Git, GitHub, Azure DevOps, Trello  
-- **Methodologies:** Agile, Scrum, collaborative teamwork  
+### 🔹 Frontend  
+JavaScript, HTML5, CSS3, Firebase, AngularJS, React (learning), Next.js (learning), Bootstrap  
+
+### 🔹 Backend  
+C#, .NET (Visual Studio), SQL, Firebase Functions, API integration  
+
+### 🔹 Tools & Methodologies  
+Git, GitHub, Azure DevOps, Trello, Postman, Unity, Blender  
+Agile · Scrum · Version Control · Testing  
 
 ---
 
 ## 🚀 Projects  
 
 ### 🔹 [Order Management Web App – FP Cocina](https://github.com/PollinatorBee/kitchen-management)  
-Responsive web application with user authentication, Firestore database, and Firebase hosting. 
-Team development with documentation for both users and developers.
+**Tech:** JavaScript · Firebase · HTML/CSS  
+Responsive web application with authentication, Firestore database, and hosting.  
+Team development with documentation for both users and developers.  
+*(Frontend-focused project)*  
+
+---
 
 ### 🔹 [Historical Characters with AI (VR + GPT-4)](https://github.com/PollinatorBee/historical-characters.git)  
-Educational VR game with interactive dialogues powered by AI.  
-Developed in Unity with C#, GPT-4 integration, Blender modeling, and iterative user testing.
-Team development as part of a bigger proyect for another school. 
+**Tech:** C# · Unity · GPT-4 API · Blender  
+Educational VR game with dynamic dialogues powered by AI.  
+Collaborative development and iterative user testing.  
+*(Backend & AI integration focus)*  
+
+---
 
 ### 🔹 [Sendero Sereno (Unity VR)](https://github.com/PollinatorBee/sendero-sereno)  
-Immersive VR video game with 3D environments and user interaction controls.  
-Collaborative development with Git and Trello, phased issue validation.
-Team development with design documentation.
+**Tech:** C# · Unity · Trello · Git  
+Immersive VR experience with 3D environments and user interaction controls.  
+*(Team project with design documentation and issue tracking)*  
+
+---
+
+## 🔧 Currently Learning  
+- React & Next.js for modern frontend development  
+- ASP.NET Core & Web API for backend and fullstack applications    
 
 ---
 
