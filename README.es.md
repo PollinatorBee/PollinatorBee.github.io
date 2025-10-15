@@ -1,4 +1,4 @@
-🌐 Available in [English](./README.md) | Disponible en [Español](./README.es.md)
+🌐 Available in [English](./README.md)
 
 # 👋 Hola, soy Verónica (PollinatorBee)  
 
@@ -70,6 +70,7 @@ Proyecto colaborativo con gestión ágil y documentación de diseño.
 
 ---
 ⭐️ *Explora mis repositorios y no dudes en conectar conmigo en LinkedIn.*  
+
 
 
 
